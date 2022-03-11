@@ -36,6 +36,7 @@ public class Menu {
             menu.put(0, new Menu("Exit", () -> Menu.exit() ) );
             menu.put(1, new Menu("Matrix", () -> Matrix.main(null) ) );
             menu.put(2, new Menu("Calculator", () -> Calculator.main(null) ) );
+            menu.put(3, new Menu("IntByReference", () -> IntByReference.main(null) ) );
 
             System.out.println("Menu:");
             for (Map.Entry<Integer, Menu> pair : menu.entrySet()) {
