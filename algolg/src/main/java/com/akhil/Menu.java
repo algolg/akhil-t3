@@ -41,14 +41,20 @@ public class Menu {
             for (Map.Entry<Integer, Menu> pair : menu.entrySet()) {
                 System.out.println(pair.getKey() + " ==> " + pair.getValue().getTitle());
             }
-            int input = sc.nextInt();
-            try {
-                Menu m = menu.get(input);
-                m.getAction().run();
-            } catch (Exception e) {
-                System.out.println("error");
-                
+
+            if (sc.hasNextInt()) {
+                int input = sc.nextInt();
+                if ( input >= 0 && menu.size() > input ) {
+                    Menu m = menu.get(input);
+                    m.getAction().run();
+                    System.out.println();
+                } else {
+                    System.out.println("Error: Expecting an Integer from 0 to " + (menu.size()-1) );
+                }
+            } else {
+                System.out.println("Error: Expecting an Integer from 0 to " + (menu.size()-1) );
             }
+            System.out.println();
         } while(!done);
     }
 }
