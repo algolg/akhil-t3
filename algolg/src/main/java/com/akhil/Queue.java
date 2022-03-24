@@ -58,7 +58,7 @@ public class Queue {
     }
     
     public void modify(String change) {
-        ArrayList<String> list = new ArrayList();
+        ArrayList<String> list = new ArrayList<>();
         if (queue.length()>0) {
             String[] array = queue.split(" ");
             for (String word : array) {
