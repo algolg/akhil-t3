@@ -2,6 +2,8 @@ package com.akhil;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Map;
+import java.util.HashMap;
 
 public class Queue {
     private String queue;
@@ -80,6 +82,17 @@ public class Queue {
         queue += list.get(list.size()-1);
     }
 
+    public Queue reverseQueue() {
+        String[] array = queue.split(" ");
+        String reverse = "";
+        for (int i=array.length-1;i>0;i--) {
+            reverse += array[i] + " ";
+        }
+        reverse += array[0];
+        Queue reverseQueue = new Queue(reverse);
+        return reverseQueue;
+    }
+
     public static void main(String[] args) {
         boolean done = false;
         Queue q = new Queue();
@@ -119,6 +132,7 @@ public class Queue {
             }
             System.out.println("Word count: " + (firstQ.getQueue().split(" ").length-1) + ", data: " + firstQ.getQueue());
         } while (!done);
+        System.out.println();
 
         done = false;
         Queue secQ = new Queue();
@@ -142,5 +156,56 @@ public class Queue {
 
         Queue newQueue = firstQ.sortQueue(secQ);
         System.out.println("New Queue: " + newQueue.getQueue());
+    }
+    public static void reverse(String[] args) {
+        boolean done = false;
+        Queue q = new Queue();
+        System.out.println("Type \"DONE\" to reverse");
+        do {
+            Scanner sc = new Scanner(System.in);
+            System.out.print("Enqueued Data: ");
+            if (sc.hasNextInt()) {
+                int input = sc.nextInt();
+                q.modify(String.valueOf(input));
+            }
+            else if(sc.hasNextLine()) {
+                String input = sc.nextLine();
+                if (input.equals("DONE")) {
+                    done = true;
+                }
+            }
+            System.out.println("Word count: " + (q.getQueue().split(" ").length-1) + ", data: " + q.getQueue());
+        } while (!done);
+        System.out.println("Reversed Queue: " + q.reverseQueue().getQueue());
+    }
+
+    public static void menu(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        Map<Integer, Menu> menu = new HashMap<>();
+
+        menu.put(0, new Menu("Exit", () -> Menu.main(null) ) );
+        menu.put(1, new Menu("Queue Main", () -> Queue.main(null) ) );
+        menu.put(2, new Menu("Queue Sort", () -> Queue.sort(null) ) );
+        menu.put(3, new Menu("Queue Reverse", () -> Queue.reverse(null) ) );
+
+        System.out.println("Menu:");
+        for (Map.Entry<Integer, Menu> pair : menu.entrySet()) {
+            System.out.println(pair.getKey() + " ==> " + pair.getValue().getTitle());
+        }
+
+        if (sc.hasNextInt()) {
+            int input = sc.nextInt();
+            if ( input >= 0 && menu.size() > input ) {
+                Menu m = menu.get(input);
+                m.getAction().run();
+                System.out.println();
+            } else {
+                System.out.println("Error: Expecting an Integer from 0 to " + (menu.size()-1) );
+            }
+        } else {
+            System.out.println("Error: Expecting an Integer from 0 to " + (menu.size()-1) );
+        }
+        System.out.println();
     }
 }
