@@ -18,7 +18,7 @@ public class Calculator {
         calcToRPN();
     }
 
-    public String tokenize() {
+    public Queue<Object> tokenize() {
         Queue<Object> calc = new Queue<>();
         Queue<Object> output = new Queue<>();
         for (int i=0; i<this.calc.length(); i++) {
@@ -37,22 +37,16 @@ public class Calculator {
                 calc.dequeue();
             }
         }
-        return output.formattedString();
+        return output;
     }
 
     public void calcToRPN() {
-        Queue<Object> calc = new Queue<>();
-        for (int i=0; i<this.calc.length(); i++) {
-            if (!String.valueOf(this.calc.charAt(i)).equals(" ")) {
-                calc.enqueue(String.valueOf(this.calc.charAt(i)));
-            }
-        }
-        int index = 0;
+        Queue<Object> calc = tokenize();
         while (calc.size() > 0) {
             String i = String.valueOf(calc.peek());
             if (isNum(i)) {
-                i = fullInt("", calc);
                 output.enqueue(Float.parseFloat(i));
+                calc.dequeue();
             }
             else if (isOp(i)) {
                 if (operators.size() > 0) {
@@ -91,7 +85,6 @@ public class Calculator {
             }
             // System.out.println(index + "\t" + output);
             // System.out.println(index + "\t" + operators);
-            index++;
         }
         while (operators.size()>0) {
             output.enqueue(operators.peek());
@@ -224,7 +217,7 @@ public class Calculator {
         return (
             "\n" +
             "Original Expression:\t\t" + this.calc + "\n" +
-            "Tokenized Expression:\t\t" + tokenize() + "\n" +
+            "Tokenized Expression:\t\t" + tokenize().formattedString() + "\n" +
             "Reverse Polish Notation:\t" + getRPN() + "\n" +
             "Computed Equation: \t\t" + compute() + "\n"
         );
