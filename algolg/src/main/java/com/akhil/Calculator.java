@@ -3,6 +3,7 @@ package com.akhil;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 import com.akhil.DataTypes.Stack;
 import com.akhil.DataTypes.Queue;
@@ -228,5 +229,20 @@ public class Calculator {
 
         Calculator allMath2 = new Calculator("200 % (300 + 5 + 300) / 200 + 1 * 100");
         System.out.println("All Math2\n" + allMath2); 
+        
+        boolean done = false;
+        do {
+            Scanner sc = new Scanner(System.in);
+            System.out.println("Type \"DONE\" to exit");
+            System.out.print("Type an Expression: ");
+            String a = sc.nextLine();
+            if (a.equals("DONE")) {
+                done = true;
+            }
+            else {
+                Calculator input = new Calculator(a);
+                System.out.println(input);
+            }
+        } while (!done);
     }
 }
