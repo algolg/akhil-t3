@@ -18,13 +18,12 @@ public class Calculator {
     }
 
     public String tokenize() {
-        Queue<Object> calc = new Queue<>();
-        for (int i=0; i<this.calc.length(); i++) {
-            if (!String.valueOf(this.calc.charAt(i)).equals(" ")) {
-                calc.enqueue(String.valueOf(this.calc.charAt(i)));
-            }
+        String[] calc = this.calc.split(" ");
+        ArrayList<String> result = new ArrayList<>();
+        for (String i : calc) {
+            result.add(i);
         }
-        return calc.formattedString();
+        return (result.toString());
     }
 
     public void calcToRPN() {
@@ -37,9 +36,9 @@ public class Calculator {
         int index = 0;
         while (calc.size() > 0) {
             String i = String.valueOf(calc.peek());
-            if (isInt(i)) {
+            if (isNum(i)) {
                 i = fullInt("", calc);
-                output.enqueue(Integer.parseInt(i));
+                output.enqueue(Float.parseFloat(i));
             }
             else if (isOp(i)) {
                 if (operators.size() > 0) {
@@ -88,9 +87,60 @@ public class Calculator {
         // System.out.println(index + "\t" + operators);
     }
 
-    public boolean isInt(String a) {
+    public float compute() {
+        ArrayList<String> eq = new ArrayList<>();
+        while (output.size() > 0) {
+            eq.add(String.valueOf(output.peek()));
+            output.dequeue();
+        }
+        eq = process(eq);
+        return Float.parseFloat(eq.get(0));
+    }
+
+    public ArrayList<String> process(ArrayList<String> eq) {
+        int index = 0;
+        for (String i : eq) {
+            if (isOp(i)) {
+                break;
+            }
+            index++;
+        }
+        // System.out.println("\n\n" + eq + "\n\n");
+        eq = operate(eq, index);
+        boolean done = true;
+        for (String i : eq) {
+            if (isOp(i)) {
+                done = false;
+            }
+        }
+        if (!done) {
+            process(eq);
+        }
+        return eq;
+
+    }
+
+    public ArrayList<String> operate(ArrayList<String> eq, int index) {
+        String operator = eq.get(index);
+        float result = 0;
+        switch (operator) {
+            case "+": result = Float.parseFloat(eq.get(index-2)) + Float.parseFloat(eq.get(index-1)); break;
+            case "-": result = Float.parseFloat(eq.get(index-2)) - Float.parseFloat(eq.get(index-1)); break;
+            case "*": result = Float.parseFloat(eq.get(index-2)) * Float.parseFloat(eq.get(index-1)); break;
+            case "/": result = Float.parseFloat(eq.get(index-2)) / Float.parseFloat(eq.get(index-1)); break;
+            case "^": result = (float) Math.pow(Float.parseFloat(eq.get(index-2)), Float.parseFloat(eq.get(index-1))); break;
+            case "%": result = Float.parseFloat(eq.get(index-2)) % Float.parseFloat(eq.get(index-1));
+        }
+        // System.out.print(result); ...
+        eq.set(index, String.valueOf(result));
+        eq.remove(index-1);
+        eq.remove(index-2);
+        return eq;
+    }
+
+    public boolean isNum(String a) {
         try {
-            Integer.parseInt(a);
+            Float.parseFloat(a);
             return true;
         } catch (NumberFormatException e) {
             return false;
@@ -101,7 +151,7 @@ public class Calculator {
         num += String.valueOf(calc.peek());
         calc.dequeue();
         if (calc.size()>0) {
-            if (isInt(String.valueOf(calc.peek()))) {
+            if (isNum(String.valueOf(calc.peek())) || calc.peek().equals(".")) {
                 num = fullInt(num, calc);
             }
         }
@@ -117,26 +167,28 @@ public class Calculator {
             case "^": return true;
             case "(": return true;
             case ")": return true;
+            case "%": return true;
         }
         return false;
     }
 
     public int precedence(String a) {
         switch (a) {
-            case "+": return 2;
-            case "-": return 2;
+            case "+": return 1;
+            case "-": return 1;
             case "*": return 3;
             case "/": return 3;
             case "^": return 4;
             case "(": return 0;
             case ")": return 0;
+            case "%": return 3;
         }
         return 0;
     }
 
     public boolean association(String a) {
-        // Right = True
-        // Left = False
+        // Right = False
+        // Left = True
         switch (a) {
             case "+": return true;
             case "-": return true;
@@ -145,6 +197,7 @@ public class Calculator {
             case "^": return false;
             case "(": return true;
             case ")": return true;
+            case "%": return true;
         }
         return false;
     }
@@ -158,12 +211,22 @@ public class Calculator {
             "\n" +
             "Original Expression:\t\t" + this.calc + "\n" +
             "Tokenized Expression:\t\t" + tokenize() + "\n" +
-            "Reverse Polish Notation:\t" + getRPN() + "\n"
+            "Reverse Polish Notation:\t" + getRPN() + "\n" +
+            "Computed Equation: \t\t" + compute() + "\n"
         );
     }
 
     public static void main(String[] args) {
-        Calculator simple = new Calculator("3 + 4 * 2 / ( 1 - 5 ) ^ 2 ^ 3");
-        System.out.println(simple);
+        Calculator simpleMath = new Calculator("100 + 200  * 3");
+        System.out.println("Simple Math\n" + simpleMath);
+
+        Calculator parenthesisMath = new Calculator("(100 + 200)  * 3");
+        System.out.println("Parenthesis Math\n" + parenthesisMath);
+
+        Calculator allMath = new Calculator("200 % 300 + 5 + 300 / 200 + 1 * 100");
+        System.out.println("All Math\n" + allMath);
+
+        Calculator allMath2 = new Calculator("200 % (300 + 5 + 300) / 200 + 1 * 100");
+        System.out.println("All Math2\n" + allMath2); 
     }
 }
