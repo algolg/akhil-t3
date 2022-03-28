@@ -28,4 +28,13 @@ public class Queue<T> {
         }
         return output;
     }
+
+    public String formattedString() {
+        String output = "[";
+        for (Object i : queue) {
+            output += i + ", ";
+        }
+        output = output.substring(0, output.length()-2) + "]";
+        return output;
+    }
 }

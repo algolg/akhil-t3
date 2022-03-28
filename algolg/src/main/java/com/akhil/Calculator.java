@@ -14,64 +14,78 @@ public class Calculator {
 
     public Calculator(String calc) {
         this.calc = calc;
+        calcToRPN();
+    }
+
+    public String tokenize() {
+        Queue<Object> calc = new Queue<>();
+        for (int i=0; i<this.calc.length(); i++) {
+            if (!String.valueOf(this.calc.charAt(i)).equals(" ")) {
+                calc.enqueue(String.valueOf(this.calc.charAt(i)));
+            }
+        }
+        return calc.formattedString();
     }
 
     public void calcToRPN() {
         Queue<Object> calc = new Queue<>();
         for (int i=0; i<this.calc.length(); i++) {
-            calc.enqueue(String.valueOf(this.calc.charAt(i)));
+            if (!String.valueOf(this.calc.charAt(i)).equals(" ")) {
+                calc.enqueue(String.valueOf(this.calc.charAt(i)));
+            }
         }
         int index = 0;
         while (calc.size() > 0) {
             String i = String.valueOf(calc.peek());
-            if (!i.equals(" ")) {
-                if (isInt(i)) {
-                    i = fullInt("", calc);
-                    output.enqueue(Integer.parseInt(i));
-                }
-                else if (isOp(i)) {
-                    if (operators.size() > 0) {
-                        if (i.equals(")")) {
-                            if (operators.size()>0) {
-                                while (!operators.peek().equals("(")) {
-                                    output.enqueue(operators.peek());
-                                    operators.pop();
-                                }
+            if (isInt(i)) {
+                i = fullInt("", calc);
+                output.enqueue(Integer.parseInt(i));
+            }
+            else if (isOp(i)) {
+                if (operators.size() > 0) {
+                    if (i.equals(")")) {
+                        if (operators.size()>0) {
+                            while (!operators.peek().equals("(")) {
+                                output.enqueue(operators.peek());
                                 operators.pop();
                             }
+                            operators.pop();
                         }
-                        else if (i.equals("(")) {
+                    }
+                    else if (i.equals("(")) {
+                        operators.push(i);
+                    }
+                    else {
+                        if (precedence(i) > precedence(operators.peek()) || (precedence(i) >= precedence(operators.peek()) && !association(i))) {
                             operators.push(i);
                         }
                         else {
-                            if (precedence(i) > precedence(operators.peek()) || (precedence(i) >= precedence(operators.peek()) && !association(i))) {
-                                operators.push(i);
-                            }
-                            else {
-                                output.enqueue(operators.peek());
-                                operators.pop();
-                                operators.push(i);
-                            }
+                            output.enqueue(operators.peek());
+                            operators.pop();
+                            operators.push(i);
                         }
                     }
-                    else {
-                        operators.push(i);
-                    }
-                    if (calc.size() > 0) {
-                        calc.dequeue();
-                    }
+                }
+                else {
+                    operators.push(i);
+                }
+                if (calc.size() > 0) {
+                    calc.dequeue();
                 }
             }
-            System.out.println(index + "\t" + output);
-            System.out.println(index + "\t" + operators);
+            else {
+                calc.dequeue();
+            }
+            // System.out.println(index + "\t" + output);
+            // System.out.println(index + "\t" + operators);
             index++;
         }
         while (operators.size()>0) {
             output.enqueue(operators.peek());
             operators.pop();
         }
-        System.out.println(index + "\t" + output);
-        System.out.println(index + "\t" + operators);
+        // System.out.println(index + "\t" + output);
+        // System.out.println(index + "\t" + operators);
     }
 
     public boolean isInt(String a) {
@@ -135,17 +149,21 @@ public class Calculator {
         return false;
     }
 
-    public Queue<Object> getOutput() {
-        return output;
+    public String getRPN() {
+        return output.formattedString();
     }
 
     public String toString() {
-        return output.toString();
+        return (
+            "\n" +
+            "Original Expression:\t\t" + this.calc + "\n" +
+            "Tokenized Expression:\t\t" + tokenize() + "\n" +
+            "Reverse Polish Notation:\t" + getRPN() + "\n"
+        );
     }
 
     public static void main(String[] args) {
-        Calculator simple = new Calculator("3+4*2/(1-5)^2^3");
-        simple.calcToRPN();
-        System.out.println(simple.getOutput());
+        Calculator simple = new Calculator("3 + 4 * 2 / ( 1 - 5 ) ^ 2 ^ 3");
+        System.out.println(simple);
     }
 }
