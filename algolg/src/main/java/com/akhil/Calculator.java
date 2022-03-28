@@ -17,17 +17,15 @@ public class Calculator {
     }
 
     public void calcToRPN() {
-        String[] calc = new String[this.calc.length()];
+        Queue<Object> calc = new Queue<>();
         for (int i=0; i<this.calc.length(); i++) {
-            calc[i] = String.valueOf(this.calc.charAt(i));
+            calc.enqueue(String.valueOf(this.calc.charAt(i)));
         }
-        int index = 0;
-        for (String i : calc) {
+        while (calc.size() > 0) {
+            String i = String.valueOf(calc.peek());
             if (!i.equals(" ")) {
                 if (isInt(i)) {
-                    i = fullInt(i, index);
                     output.enqueue(Integer.parseInt(i));
-                    index += i.length()-1;
                 }
                 if (isOp(i)) {
                     if (!operators.isEmpty()) {
@@ -45,7 +43,7 @@ public class Calculator {
                     }
                 }
             }
-            index++;
+            calc.dequeue();
         }
         if (operators.size()>0) {
             for (int i=0; i<=operators.size(); i++) {
@@ -64,10 +62,12 @@ public class Calculator {
         }
     }
 
-    public String fullInt(String num, int index) {
-        if (index < (calc.length()-1)) {
-            if (isInt(String.valueOf(calc.charAt(index+1)))) {
-                fullInt(num+String.valueOf(calc.charAt(index+1)), index+1);
+    public String fullInt(String num, Queue calc) {
+        if (calc.size()>0) {
+            if (isInt(String.valueOf(calc.peek()))) {
+                num += String.valueOf(calc.peek());
+                calc.dequeue();
+                fullInt(num, calc);
             }
         }
         System.out.println(num);
@@ -103,7 +103,7 @@ public class Calculator {
     }
 
     public static void main(String[] args) {
-        Calculator simple = new Calculator("123");
+        Calculator simple = new Calculator("3*4+5*6");
         simple.calcToRPN();
         System.out.println(simple.getOutput());
     }
