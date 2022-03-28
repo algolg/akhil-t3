@@ -19,12 +19,25 @@ public class Calculator {
     }
 
     public String tokenize() {
-        String[] calc = this.calc.split(" ");
-        ArrayList<String> result = new ArrayList<>();
-        for (String i : calc) {
-            result.add(i);
+        Queue<Object> calc = new Queue<>();
+        Queue<Object> output = new Queue<>();
+        for (int i=0; i<this.calc.length(); i++) {
+            if (!String.valueOf(this.calc.charAt(i)).equals(" ")) {
+                calc.enqueue(String.valueOf(this.calc.charAt(i)));
+            }
         }
-        return (result.toString());
+        while (calc.size() > 0) {
+            String i = String.valueOf(calc.peek());
+            if (isNum(i)) {
+                i = fullInt("", calc);
+                output.enqueue(Float.parseFloat(i));
+            }
+            else if (isOp(i)) {
+                output.enqueue(i);
+                calc.dequeue();
+            }
+        }
+        return output.formattedString();
     }
 
     public void calcToRPN() {
