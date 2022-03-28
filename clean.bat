@@ -1,0 +1,1 @@
+wsl find . -name '*.class' -delete
