@@ -5,14 +5,14 @@ import java.util.Scanner;
 import java.util.Map;
 import java.util.HashMap;
 
-public class Queue {
+public class Q {
     private String queue;
 
-    public Queue() {
+    public Q() {
         this.queue = "";
     }
 
-    public Queue(String queue) {
+    public Q(String queue) {
         this.queue = queue;
     }
 
@@ -20,7 +20,7 @@ public class Queue {
         return this.queue;
     }
 
-    public Queue sortQueue(Queue that) {
+    public Q sortQueue(Q that) {
         String a = this.getQueue();
         String b = that.getQueue();
         String[] aList = a.split(" ");
@@ -53,7 +53,7 @@ public class Queue {
             output += fullList.get(i) + " ";
         }
         output += fullList.get(fullList.size()-1);
-        Queue outputQueue = new Queue(output);
+        Q outputQueue = new Q(output);
         return outputQueue;
     }
     
@@ -82,20 +82,20 @@ public class Queue {
         queue += list.get(list.size()-1);
     }
 
-    public Queue reverseQueue() {
+    public Q reverseQueue() {
         String[] array = queue.split(" ");
         String reverse = "";
         for (int i=array.length-1;i>0;i--) {
             reverse += array[i] + " ";
         }
         reverse += array[0];
-        Queue reverseQueue = new Queue(reverse);
+        Q reverseQueue = new Q(reverse);
         return reverseQueue;
     }
 
     public static void main(String[] args) {
         boolean done = false;
-        Queue q = new Queue();
+        Q q = new Q();
         System.out.println("Type \"EXIT\" to return to menu");
         do {
             Scanner sc = new Scanner(System.in);
@@ -114,7 +114,7 @@ public class Queue {
 
     public static void sort(String[] args) {
         boolean done = false;
-        Queue firstQ = new Queue();
+        Q firstQ = new Q();
         System.out.println("Write the first queue of integers");
         System.out.println("Type \"DONE\" to continue");
         do {
@@ -135,7 +135,7 @@ public class Queue {
         System.out.println();
 
         done = false;
-        Queue secQ = new Queue();
+        Q secQ = new Q();
         System.out.println("Write the second queue of integers");
         System.out.println("Type \"DONE\" to continue");
         do {
@@ -154,12 +154,12 @@ public class Queue {
             System.out.println("Word count: " + (secQ.getQueue().split(" ").length-1) + ", data: " + secQ.getQueue());
         } while (!done);
 
-        Queue newQueue = firstQ.sortQueue(secQ);
+        Q newQueue = firstQ.sortQueue(secQ);
         System.out.println("New Queue: " + newQueue.getQueue());
     }
     public static void reverse(String[] args) {
         boolean done = false;
-        Queue q = new Queue();
+        Q q = new Q();
         System.out.println("Type \"DONE\" to reverse");
         do {
             Scanner sc = new Scanner(System.in);
@@ -185,9 +185,9 @@ public class Queue {
         Map<Integer, Menu> menu = new HashMap<>();
 
         menu.put(0, new Menu("Exit", () -> Menu.main(null) ) );
-        menu.put(1, new Menu("Queue Main", () -> Queue.main(null) ) );
-        menu.put(2, new Menu("Queue Sort", () -> Queue.sort(null) ) );
-        menu.put(3, new Menu("Queue Reverse", () -> Queue.reverse(null) ) );
+        menu.put(1, new Menu("Queue Main", () -> Q.main(null) ) );
+        menu.put(2, new Menu("Queue Sort", () -> Q.sort(null) ) );
+        menu.put(3, new Menu("Queue Reverse", () -> Q.reverse(null) ) );
 
         System.out.println("Menu:");
         for (Map.Entry<Integer, Menu> pair : menu.entrySet()) {
