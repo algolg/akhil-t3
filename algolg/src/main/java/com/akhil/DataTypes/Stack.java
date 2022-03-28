@@ -16,14 +16,6 @@ public class Stack<T> {
         return this.stack.get(this.stack.size()-1);
     }
 
-    public boolean isEmpty() {
-        if (this.stack.size() == 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     public int size() {
         return this.stack.size();
     }

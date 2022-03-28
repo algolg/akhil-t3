@@ -21,36 +21,57 @@ public class Calculator {
         for (int i=0; i<this.calc.length(); i++) {
             calc.enqueue(String.valueOf(this.calc.charAt(i)));
         }
+        int index = 0;
         while (calc.size() > 0) {
             String i = String.valueOf(calc.peek());
             if (!i.equals(" ")) {
                 if (isInt(i)) {
+                    i = fullInt("", calc);
                     output.enqueue(Integer.parseInt(i));
                 }
-                if (isOp(i)) {
-                    if (!operators.isEmpty()) {
-                        if (precedence(i) > precedence(operators.peek())) {
+                else if (isOp(i)) {
+                    if (operators.size() > 0) {
+                        if (i.equals(")")) {
+                            if (operators.size()>0) {
+                                while (!operators.peek().equals("(")) {
+                                    output.enqueue(operators.peek());
+                                    operators.pop();
+                                }
+                                operators.pop();
+                            }
+                        }
+                        else if (i.equals("(")) {
                             operators.push(i);
                         }
                         else {
-                            output.enqueue(operators.peek());
-                            operators.pop();
-                            operators.push(i);
+                            if (precedence(i) > precedence(operators.peek()) || (precedence(i) >= precedence(operators.peek()) && !association(i))) {
+                                operators.push(i);
+                            }
+                            else {
+                                output.enqueue(operators.peek());
+                                operators.pop();
+                                operators.push(i);
+                            }
                         }
                     }
                     else {
                         operators.push(i);
                     }
+                    if (calc.size() > 0) {
+                        calc.dequeue();
+                    }
                 }
             }
-            calc.dequeue();
+            System.out.println(index + "\t" + output);
+            System.out.println(index + "\t" + operators);
+            index++;
         }
-        if (operators.size()>0) {
-            for (int i=0; i<=operators.size(); i++) {
-                output.enqueue(operators.peek());
-                operators.pop();
-            }
+        while (operators.size()>0) {
+            output.enqueue(operators.peek());
+            operators.pop();
         }
+        System.out.println(index + "\t" + output);
+        System.out.println(index + "\t" + operators);
     }
 
     public boolean isInt(String a) {
@@ -63,14 +84,13 @@ public class Calculator {
     }
 
     public String fullInt(String num, Queue calc) {
+        num += String.valueOf(calc.peek());
+        calc.dequeue();
         if (calc.size()>0) {
             if (isInt(String.valueOf(calc.peek()))) {
-                num += String.valueOf(calc.peek());
-                calc.dequeue();
-                fullInt(num, calc);
+                num = fullInt(num, calc);
             }
         }
-        System.out.println(num);
         return num;
     }
 
@@ -80,18 +100,39 @@ public class Calculator {
             case "-": return true;
             case "*": return true;
             case "/": return true;
+            case "^": return true;
+            case "(": return true;
+            case ")": return true;
         }
         return false;
     }
 
     public int precedence(String a) {
         switch (a) {
-            case "+": return 1;
-            case "-": return 1;
-            case "*": return 2;
-            case "/": return 2;
+            case "+": return 2;
+            case "-": return 2;
+            case "*": return 3;
+            case "/": return 3;
+            case "^": return 4;
+            case "(": return 0;
+            case ")": return 0;
         }
         return 0;
+    }
+
+    public boolean association(String a) {
+        // Right = True
+        // Left = False
+        switch (a) {
+            case "+": return true;
+            case "-": return true;
+            case "*": return true;
+            case "/": return true;
+            case "^": return false;
+            case "(": return true;
+            case ")": return true;
+        }
+        return false;
     }
 
     public Queue<Object> getOutput() {
@@ -103,7 +144,7 @@ public class Calculator {
     }
 
     public static void main(String[] args) {
-        Calculator simple = new Calculator("3*4+5*6");
+        Calculator simple = new Calculator("3+4*2/(1-5)^2^3");
         simple.calcToRPN();
         System.out.println(simple.getOutput());
     }
