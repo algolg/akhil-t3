@@ -13,12 +13,18 @@ public class Calculator {
     private String clearSqrtCalc;
     private Queue<Object> output = new Queue<>();
     private Stack<String> operators = new Stack<>();
-    private HashMap<String, Float> variables = new HashMap<>();
+    private static HashMap<String, Float> variables = new HashMap<>();
+    private boolean isVar = false;
 
     public Calculator(String calc) {
         this.calc = calc;
-        clearSQRT();
-        calcToRPN();
+        if (calc.contains("=")) {
+            setVar();
+        }
+        else {
+            clearSQRT();
+            calcToRPN();
+        }
     }
 
     public String clearSQRT() {
@@ -48,6 +54,40 @@ public class Calculator {
         return calc;
     }
 
+    public void setVar() {
+        if (calc.contains("=")) {
+            this.isVar = true;
+            String name = String.valueOf(calc.charAt(0));
+            Calculator value = new Calculator(calc.split("=")[1]);
+            float varValue = value.compute();
+            variables.put(name, varValue);
+            System.out.println("Initialized Variable " + name + " with value " + varValue);
+        }
+    }
+
+    public boolean calcOrVar() {
+        if (this.isVar) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public boolean isVar(String name) {
+        if (variables.containsKey(name)) {
+            return true;
+        }
+        return false;
+    }
+
+    public float replaceVar(String name) {
+        if (variables.containsKey(name)) {
+            return variables.get(name);
+        }
+        return 0;
+    }
+
     public Queue<Object> tokenize() {
         Queue<Object> calc = new Queue<>();
         Queue<Object> output = new Queue<>();
@@ -58,6 +98,7 @@ public class Calculator {
         }
         while (calc.size() > 0) {
             String i = String.valueOf(calc.peek());
+            // System.out.println(i);
             if (isNum(i)) {
                 i = fullInt("", calc);
                 output.enqueue(Float.parseFloat(i));
@@ -66,6 +107,11 @@ public class Calculator {
                 output.enqueue(i);
                 calc.dequeue();
             }
+            else if (isVar(i)) {
+                output.enqueue(replaceVar(i));
+                calc.dequeue();
+            }
+
         }
         return output;
     }
@@ -136,14 +182,18 @@ public class Calculator {
 
     public ArrayList<String> process(ArrayList<String> eq) {
         int index = 0;
+        boolean containsOp = false;
         for (String i : eq) {
             if (isOp(i)) {
+                containsOp = true;
                 break;
             }
             index++;
         }
         // System.out.println("\n\n" + eq + "\n\n");
-        eq = operate(eq, index);
+        if (containsOp) {
+            eq = operate(eq, index);
+        }
         boolean done = true;
         for (String i : eq) {
             if (isOp(i)) {
@@ -277,7 +327,9 @@ public class Calculator {
             }
             else {
                 Calculator input = new Calculator(a);
-                System.out.println(input);
+                if (!input.calcOrVar()) {
+                    System.out.println(input);
+                }
             }
         } while (!done);
     }
