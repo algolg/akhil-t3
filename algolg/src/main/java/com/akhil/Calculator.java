@@ -10,12 +10,42 @@ import com.akhil.DataTypes.Queue;
 
 public class Calculator {
     private String calc;
+    private String clearSqrtCalc;
     private Queue<Object> output = new Queue<>();
     private Stack<String> operators = new Stack<>();
+    private HashMap<String, Float> variables = new HashMap<>();
 
     public Calculator(String calc) {
         this.calc = calc;
+        clearSQRT();
         calcToRPN();
+    }
+
+    public String clearSQRT() {
+        if (calc.contains("SQRT(")) {
+            int prefixLen = calc.split("SQRT")[0].length() + 5;
+
+            int index = prefixLen-1;
+            int count = 0;
+            for (int i=prefixLen-1; i<calc.length(); i++) {
+                if (String.valueOf(calc.charAt(i)).equals("(")) {
+                    count++;
+                }
+                else if (String.valueOf(calc.charAt(i)).equals(")")) {
+                    count--;
+                }
+                if (count == 0) {
+                    break;
+                }
+                index++;
+            }
+
+            calc = calc.substring(0, prefixLen-5) + calc.substring(prefixLen-1, index+1) + "^0.5" + calc.substring(index+1, calc.length());
+        }
+        if (calc.contains("SQRT(")) {
+            clearSQRT();
+        }
+        return calc;
     }
 
     public Queue<Object> tokenize() {
