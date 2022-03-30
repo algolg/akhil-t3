@@ -1,7 +1,9 @@
 package com.akhil.DataTypes;
-import java.util.ArrayList;
 
-public class Stack<T> {
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public class Stack<T> implements Iterable<T> {
     private ArrayList<T> stack = new ArrayList<>();
 
     public void push(T e) {
@@ -35,5 +37,10 @@ public class Stack<T> {
         }
         output = output.substring(0, output.length()-2) + "]";
         return output;
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return stack.iterator();
     }
 }

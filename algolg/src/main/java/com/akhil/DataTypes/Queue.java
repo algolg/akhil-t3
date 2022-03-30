@@ -1,8 +1,9 @@
 package com.akhil.DataTypes;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
-public class Queue<T> {
+public class Queue<T> implements Iterable<T> {
     private ArrayList<T> queue = new ArrayList<T>();
     
     public void enqueue(T e) {
@@ -36,5 +37,10 @@ public class Queue<T> {
         }
         output = output.substring(0, output.length()-2) + "]";
         return output;
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return queue.iterator();
     }
 }
