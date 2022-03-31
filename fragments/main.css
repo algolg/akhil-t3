@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka&display=swap');
+
+:root {
+    --background: #1c2333;
+    --foreground: #c7d6ff;
+}
+
+.centered-svg-container {
+    display: flex;
+    align-items: center;
+}
+.centered-svg {
+    margin: 0 auto;
+    display: block;
+}
+.box {
+    padding: 10px;
+    background-color: #0e1525; 
+}
+.rounded-corners {
+    
+    border-radius: 10px;
+}
+html {
+    color: var(--foreground);
+    font-family: 'Fredoka', sans-serif;
+    background-color: var(--background);
+}
+a {
+    color: #c7d6ff;
+}
+main {
+    padding: 10px;
+}
+.bar {
+    display: grid;
+    grid-template-columns: [start] 75% [middle] 25% [end];
+    grid-template-rows: [start] 50% [middle] 50% [end];
+}
+.bar-title {
+    grid-column-start: start;
+    grid-column-end: middle;
+    grid-row-start: start;
+    grid-row-end: end;
+}
+.bar-links {
+    grid-column-start: middle;
+    grid-column-end: end;
+    display: flex;
+}
+.top-link {
+    grid-row-start: start;
+    grid-row-end: middle;
+}
+.bottom-link {
+    grid-row-start: middle;
+    grid-row-end: middle;
+}
+.link {
+    width:25%;
+    color: var(--foreground);
+    background-color: #1c2333;
+    border-radius: 10px;
+    padding: 15px 10px 15px 10px;
+    margin-right: 10px;
+    margin-left: auto;
+    transition: 0.2s;
+    float: right;
+}
+.link:hover {
+    color: var(--background);
+    background-color: var(--foreground);
+}
+.dropdown {
+    margin: 10px 0px 10px 0px;
+    padding: 20px;
+}
