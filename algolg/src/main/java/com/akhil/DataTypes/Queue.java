@@ -15,7 +15,12 @@ public class Queue<T> implements Iterable<T> {
     }
 
     public T peek() {
-        return this.queue.get(0);
+        if (queue.size() > 0) {
+            return this.queue.get(0);
+        }
+        else {
+            return null;
+        }
     }
 
     public int size() {

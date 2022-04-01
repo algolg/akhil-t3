@@ -15,7 +15,12 @@ public class Stack<T> implements Iterable<T> {
     }
 
     public T peek() {
-        return this.stack.get(this.stack.size()-1);
+        if (stack.size() > 0) {
+            return this.stack.get(this.stack.size()-1);
+        }
+        else {
+            return null;
+        }
     }
 
     public int size() {
