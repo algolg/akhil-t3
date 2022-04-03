@@ -28,12 +28,16 @@ public class SelectionSort extends Sort {
 
     }
 
+    public String toString() {
+        setStartTime();
+        Sort(getData());
+        setEndTime();
+        return(getSort() + " in " + getTimeElapsed());
+    }
+
     public static void main(String[] args) {
         SelectionSort sort = new SelectionSort();
         sort.generateData();
-        sort.setStartTime();
-        sort.Sort(sort.getData());
-        sort.setEndTime();
-        System.out.println(sort.getSort() + " in " + sort.getTimeElapsed());
+        System.out.println(sort);
     }
 }

@@ -50,12 +50,16 @@ public class BubbleSort extends Sort {
 
     }
 
+    public String toString() {
+        setStartTime();
+        Sort(getData());
+        setEndTime();
+        return(getSort() + " in " + getTimeElapsed());
+    }
+
     public static void main(String[] args) {
         BubbleSort sort = new BubbleSort();
         sort.generateData();
-        sort.setStartTime();
-        sort.Sort(sort.getData());
-        sort.setEndTime();
-        System.out.println(sort.getSort() + " in " + sort.getTimeElapsed());
+        System.out.println(sort);
     }
 }

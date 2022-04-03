@@ -3,7 +3,7 @@ package com.akhil.Sorts;
 import com.akhil.DataTypes.Queue;
 
 public class Sort {
-    protected Queue<Integer> data = new Queue<>();
+    protected static Queue<Integer> data = new Queue<>();
     protected Queue<Integer> sorted = new Queue<>();
     private long start;
     private long end;
@@ -62,6 +62,15 @@ public class Sort {
 
     public long getTimeElapsed() {
         return this.end - this.start;
-    }    
+    }
 
+    public static void main(String[] args) {
+        Sort sort = new Sort();
+        SelectionSort selection = new SelectionSort();
+        BubbleSort bubble = new BubbleSort();
+
+        sort.generateData();
+        System.out.println("Selection Sort:\n" + selection);
+        System.out.println("Bubble Sort:\n" + bubble);
+    }
 }
