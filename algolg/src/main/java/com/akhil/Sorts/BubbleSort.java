@@ -7,19 +7,19 @@ import com.akhil.DataTypes.Queue;
 public class BubbleSort extends Sort {
     private Queue<Integer> sorted = new Queue<>();
 
-    public void Sort(Queue<Integer> data, int start) {
-        int index = start;
+    public void Sort(Queue<Integer> data) {
+        int index = 0;
         int first = 0;
         int second = 0;
-        System.out.println(data.formattedString());
+        System.out.println(sorted.formattedString());
         for (int i : data) {
-            if (index == start) {
+            if (index == 0) {
                 first = i;
             }
-            else if (index == start+1) {
+            else if (index == 1) {
                 second = i;
             }
-            else if (index > start+1) {
+            else if (index > 1) {
                 break;
             }
             index++;
@@ -41,16 +41,16 @@ public class BubbleSort extends Sort {
         for (int i : data) {
             sorted.enqueue(i);
         }
-        boolean done = false;
+        boolean done = true;
         int previous = 0;
         for (int i : sorted) {
             if (i < previous) {
-                done = true;
+                done = false;
             }
             previous = i;
         }
-        if (done) {
-            Sort(data, start+1);
+        if (!done) {
+            Sort(sorted);
         }
 
     }
@@ -66,7 +66,7 @@ public class BubbleSort extends Sort {
     public static void main(String[] args) {
         BubbleSort sort = new BubbleSort();
         sort.generateData();
-        sort.Sort(sort.getData(), 0);
+        sort.Sort(sort.getData());
         System.out.println(sort.getSort());
     }
 }
