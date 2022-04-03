@@ -37,11 +37,14 @@ public class Stack<T> implements Iterable<T> {
 
     public String formattedString() {
         String output = "[";
-        for (Object i : stack) {
-            output += i + ", ";
+        if (stack.size()>0) {
+            for (Object i : stack) {
+                output += i + ", ";
+            }
+            output = output.substring(0, output.length()-2) + "]";
+            return output;
         }
-        output = output.substring(0, output.length()-2) + "]";
-        return output;
+        return null;
     }
 
     @Override

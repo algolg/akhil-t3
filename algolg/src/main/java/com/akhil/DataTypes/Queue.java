@@ -37,11 +37,14 @@ public class Queue<T> implements Iterable<T> {
 
     public String formattedString() {
         String output = "[";
-        for (Object i : queue) {
-            output += i + ", ";
+        if (queue.size()>0) {
+            for (Object i : queue) {
+                output += i + ", ";
+            }
+            output = output.substring(0, output.length()-2) + "]";
+            return output;
         }
-        output = output.substring(0, output.length()-2) + "]";
-        return output;
+        return null;
     }
 
     @Override

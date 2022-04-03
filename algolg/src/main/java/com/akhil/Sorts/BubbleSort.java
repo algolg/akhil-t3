@@ -24,8 +24,12 @@ public class BubbleSort extends Sort {
             }
             index++;
         }
-        data.dequeue();
-        data.dequeue();
+        if (data.size()>0) {
+            data.dequeue();
+        }
+        if (data.size()>0) {
+            data.dequeue();
+        }
         if (first > second) {
             sorted.enqueue(second);
             sorted.enqueue(first);
