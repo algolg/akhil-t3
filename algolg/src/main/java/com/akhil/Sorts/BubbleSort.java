@@ -1,5 +1,7 @@
 package com.akhil.Sorts;
 
+import javax.xml.crypto.Data;
+
 import com.akhil.DataTypes.Queue;
 
 public class BubbleSort extends Sort {
@@ -9,6 +11,7 @@ public class BubbleSort extends Sort {
         int index = start;
         int first = 0;
         int second = 0;
+        System.out.println(data.formattedString());
         for (int i : data) {
             if (index == start) {
                 first = i;
@@ -46,5 +49,20 @@ public class BubbleSort extends Sort {
             Sort(data, start+1);
         }
 
+    }
+
+    public Queue<Integer> getData() {
+        return data;
+    }
+
+    public String getSort() {
+        return sorted.formattedString();
+    }
+
+    public static void main(String[] args) {
+        BubbleSort sort = new BubbleSort();
+        sort.generateData();
+        sort.Sort(sort.getData(), 0);
+        System.out.println(sort.getSort());
     }
 }

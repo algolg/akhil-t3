@@ -6,7 +6,7 @@ public class Sort {
     protected Queue<Integer> data = new Queue<>();
     
     public void generateData() {
-        for (int i=0; i<data.size(); i++) {
+        for (int i=0; i<10; i++) {
             data.enqueue( (int) (Math.random()*1000) );
         }
     }
