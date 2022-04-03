@@ -2,8 +2,7 @@ package com.akhil.Sorts;
 
 import com.akhil.DataTypes.Queue;
 
-public class InsertionSort extends Sort {
-    private Queue<Integer> sorted = new Queue<>();
+public class SelectionSort extends Sort {
 
     public void Sort(Queue<Integer> data) {
         int lowest = Integer.MAX_VALUE;
@@ -29,14 +28,12 @@ public class InsertionSort extends Sort {
 
     }
 
-    public String getSort() {
-        return sorted.formattedString();
-    }
-
     public static void main(String[] args) {
-        InsertionSort sort = new InsertionSort();
+        SelectionSort sort = new SelectionSort();
         sort.generateData();
+        sort.setStartTime();
         sort.Sort(sort.getData());
-        System.out.println(sort.getSort());
+        sort.setEndTime();
+        System.out.println(sort.getSort() + " in " + sort.getTimeElapsed());
     }
 }

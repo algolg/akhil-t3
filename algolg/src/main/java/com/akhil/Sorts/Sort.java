@@ -4,6 +4,9 @@ import com.akhil.DataTypes.Queue;
 
 public class Sort {
     protected Queue<Integer> data = new Queue<>();
+    protected Queue<Integer> sorted = new Queue<>();
+    private long start;
+    private long end;
     
     public void generateData() {
         for (int i=0; i<10; i++) {
@@ -28,5 +31,37 @@ public class Sort {
         }
         return done;
     }
+
+    public int anomoly(Queue<Integer> sort) {
+        // int index = 0;
+        int output = -1;
+        int previous = -1;
+        for (int i : sort) {
+            if (i < previous) {
+                // output = index;
+                output = i;
+                break;
+            }
+            // index++;
+            previous = i;
+        }
+        return output;
+    }
+
+    public String getSort() {
+        return sorted.formattedString();
+    }
+
+    public void setStartTime() {
+        this.start = System.nanoTime();
+    }
+
+    public void setEndTime() {
+        this.end = System.nanoTime();
+    }
+
+    public long getTimeElapsed() {
+        return this.end - this.start;
+    }    
 
 }
