@@ -23,7 +23,7 @@
                             <li><a class="blue blue-hover" href="#merge">Merge Sort</a></li>
                             <li><a class="blue blue-hover" href="#bubble">Bubble Sort</a></li>
                         </ul>
-                        <li ><a class="blue blue-hover" href="#analysis">Analysis</a></li>
+                        <li ><a class="blue blue-hover" href="#analysis">Analysis and Conclusion</a></li>
                     </ul>
                 </p>
             </div>
@@ -96,7 +96,9 @@
                 <p class="box rounded-corners post-box">
                     Selection sort involves searching through a given data set, finding the term of least value 
                     (i.e. <color class="red red-hover">selecting</color> the smallest term), adding that value to a new data set, 
-                    removing it from the original set, and repeating.
+                    removing it from the original set, and repeating. Since Selection Sort frequently compares terms in a data set to 
+                    a variable (the variable that contains the lowest int), Selection Sort features 
+                    <color class="red red-hover">many comparisons</color>. However, terms are <color class="red red-hover">not swapped</color>.
                 </p>
                 <div class="code-container">
                     <code>
@@ -122,7 +124,9 @@
                 <p class="box rounded-corners post-box">
                     By contrast, the merge sort is a relatively efficient sorting algorithm. It involves splitting a given data set in halves 
                     until single-element sets are formed. Single-element sets of a common parent are compared with each other and sorted. 
-                    These sets are then <color class="red red-hover">merged</color> back together to form a complete, sorted set.
+                    These sets are then <color class="red red-hover">merged</color> back together to form a complete, sorted set. 
+                    Since Merge Sort makes comparisons and swaps at the lowest level, this algorithm features 
+                    <color class="yellow yellow-hover">few comparisons and swaps</color>.
                 </p>
             </section>
             <div style="display:flex;width:75%;margin:auto;">
@@ -191,7 +195,10 @@
                     Bubble Sort was by far the least efficient algorithm I tested, as illustrated by the issues I detailed 
                     <a class="blue blue-hover" href="#limitations">earlier</a>. I challenged myself to implement the algorithm only using 
                     classes I made, and I ended up having to use both <color class="yellow yellow-hover">Queues</color> and 
-                    <color class="yellow yellow-hover">Stacks</color> to successfully accomplish this task.
+                    <color class="yellow yellow-hover">Stacks</color> to successfully accomplish this task. The Bubble Sort algorithm involves 
+                    comparing consecutive elements and swapping if necessary. Thus, Bubble Sort makes 
+                    <color class="yellow yellow-hover">many comparisons and swaps</color>. 
+                    <color class="red red-hover">I do not know why it is called Bubble Sort</color>.
                 </p>
             </section>
             <div style="display:flex;width:75%;margin:auto;">
@@ -257,11 +264,30 @@
                     Bubble Sort involves reading all terms of a given data set, and in addition to that, it is a 
                     <color class="red red-hover">recursive</color> algorithm. Thus, Bubble Sort has a time complexity of 
                     <color class="yellow yellow-hover">O(n<sup>2</sup>)</color>.
-               </p> 
-               <h1 id="analysis">Analysis</h1>
-               <p class="box rounded-corners post-box">
-                    Funny penguins
-               </p>
+                </p> 
+                <h1 id="analysis">Analysis and Conclusion</h1>
+                <p class="box rounded-corners post-box">
+                    Upon running the main tester method of the Sort class, twelve tests of each sorting algorithm will be executed and 
+                    times are collected, following which the highest and lowest times of each sorting algorithm are removed, and 
+                    times are averaged. Average times of one test run are shown below.
+                </p>
+                <div class="code-container">
+                    <code>
+                        AVERAGES (EXCL. MAX AND MIN)<br>
+                        Selection Sort: 1919297 ns<br>
+                        Bubble Sort:    1031338857 ns<br>
+                        Merge Sort:     412588 ns<br>
+                    </code>
+                </div>
+                <p class="box rounded-corners post-box">
+                    As shown, Merge Sort has the lowest time, and Bubble Sort by far has the highest time. <br><br>
+                    As previously discussed, Merge Sort is the only algorithm with a time complexity of O(n), with the other 
+                    two algorithms having a time complexity of O(n<sup>2</sup>). <br><br>
+                    Furthermore, the Merge Sort algorithm features few comparisons and few swaps, while the other two algorithms frequently 
+                    do one or both. <br><br>
+                    It is thus safe to conclude that <color class="red red-hover">Merge Sort is the most efficient</color> of the 
+                    algorithms tested, and <color class="red red-hover">Bubble Sort is the least</color>.
+                </p>
             </section>
         </div>
     </main>
