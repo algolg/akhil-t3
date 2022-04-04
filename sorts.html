@@ -1,0 +1,129 @@
+<html>
+    <main>
+        <head>
+            <title>Sorts and Analysis</title>
+            <link rel="stylesheet" href="main.css">
+            <link rel="stylesheet" href="./fragments/main.css">
+            <div id="navParent"></div>
+            <script src="import.js"></script>
+            <script>
+                importNav();
+            </script>
+        </head>
+        <div>
+            <div class="box rounded-corners" style="float:left;width:20%">
+                <h3>Table of Contents</h3>
+                <p>
+                    <ul class="blue">
+                        <li ><a class="blue blue-hover" href="#intro">Intro</a><br></li>
+                        <li ><a class="blue blue-hover" href="#limitations">Limitations</a></li>
+                        <li ><a class="blue blue-hover" href="#explanation">Explanation of Code</a></li>
+                        <ul class="blue">
+                            <li><a class="blue blue-hover" href="#selection">Selection Sort</a></li>
+                            <li><a class="blue blue-hover" href="#merge">Merge Sort</a></li>
+                        </ul>
+                    </ul>
+                    
+                </p>
+            </div>
+            <section class="post">
+                <h1 class="post-title">Sorts and Analysis</h1>
+                <p class="caption">
+                    Akhil Guntur - April 3, 2022
+                </p>
+                <h1 id="intro">Intro</h1>
+                <p class="box rounded-corners post-box">
+                    Over the past week or so, I worked on implementing sorting algorithms on a data type of my own creation. 
+                    In my case, this meant creating algorithms for <color class="red red-hover">selection</color>, 
+                    <color class="red red-hover">bubble</color>, and <color class="red red-hover">merge</color> sorting algorithms, 
+                    which I would run on a <color class="red red-hover">queue</color>, the class for which I made by myself. 
+                    My hope is that my implementation will fulfull <color class="yellow yellow-hover">Objective #2</color>.
+                </p>
+                <h1 id="limitations">Limitations</h1>
+                <p class="box rounded-corners post-box">
+                    As I attempted to pursue Objective #2, there were some requirements which I wish to waive.<br>
+                    My implementation of bubble sort was fairly complex (as I explain <a class="blue blue-hover" href="#bubble">later on</a>), 
+                    and as a result, the performance of my algorithm was negatively affected. This made it hard for Java to process 
+                    5000 elements of data for bubble sort. I tried doing so, and I have depicted my results below.
+                </p>
+                <div class="code-container">
+                    <code>
+                        Selection Sort:<br>
+                        Sorted in 180555506<br>
+                        <br>
+                        ^C<color class="code-highlight">%</color><br>
+                        <br>
+                        <color class="cyan">akhil-t3</color> on <color class="purple"> main</color> 
+                        <color class="red">[⇡$!+]</color> took <color class="yellow">24m 30s</color>
+                    </code>
+                </div>
+                <p class="caption">
+                    The program was set to run selection, then bubble, then merge sort.<br>
+                    As shown, selection sort finished in ~0.18 sec.<br>
+                    After over 24 minutes, bubble sort still wasn't done.
+                </p>
+                <p class="box rounded-corners post-box">
+                    This is all to say that <color class="red red-hover">5000 terms was not doable</color> with my implementation, 
+                    especially given how I planned on running each algorithm twelve times. 
+                    And thus, I opted for a more humble <color class="red red-hover">500 terms</color>, which I found can still reveal how 
+                    not all sorting algorithms are made equal.<br>
+                    Other than that, I believe I incorporated all required elements of the assignment.
+                </p>
+                <h1 id="explanation">Explanation of Code</h1>
+                <p class="box rounded-corners post-box">
+                    Each sorting algorithm is a subclass of the Sort superclass. From this superclass, each algorithm inherit a 
+                    Queue in which times can be stored, a method to add times to the <color class="red red-hover">Queue</color>, a 
+                    <color class="red red-hover">method</color> to average all times (removing the lowest and highest times), and a 
+                    <color class="red red-hover">method</color> to make sure the sorted Queue really is sorted. Along with those, the 
+                    Sort class contains the <code class="yellow">generateData()</code> method, which fills the 
+                    <color color="red">static</color> data Queue with <a class="blue blue-hover" href="limitations">500</a> random ints. 
+                    I made the data variable static to ensure that it was constant across all of the subclass sorting algorithms.
+                </p>
+
+                <h3 id="selection">Selection Sort</h3>
+                <p class="box rounded-corners post-box">
+                    Selection sort involves searching through a given data set, finding the term of least value 
+                    (i.e. <color class="red red-hover">selecting</color> the smallest term), adding that value to a new data set, 
+                    removing it from the original set, and repeating.
+                </p>
+                <div class="code-container">
+                    <code>
+                        int lowest = Integer.<color class="blue">MAX_VALUE</color>;<br>
+                        <color class="red">for</color> (int i : data) {<br>
+                        &emsp; &emsp; <color class="red">if</color> (i < lowest) {<br>
+                        &emsp; &emsp; &emsp; &emsp; lowest = i;<br>
+                        &emsp; &emsp; }<br>
+                        }<br>
+                    </code>
+                </div>
+                <p class="box rounded-corners post-box">
+                    This chunk of code searches through <code class="blue">data</code>, a Queue of Integers, and finds the lowest term.<br>
+                    As one may expect, this algorithm does not scale very well. Until the set is fully sorted, the algorithm searches term-by-term 
+                    through the entire set to find the lowest int.<br>
+                    Since Selection Sort involves searching through the data set of length <color class="yellow yellow-hover">n</color> 
+                    a total of <color class="yellow yellow-hover">n</color> times, this algorithm has a time complexity of 
+                    <color class="yellow yellow-hover">O(n<sup>2</sup>)</color>.
+                </p>
+                <h3 id="merge">Merge Sort</h3>
+                <p class="box rounded-corners post-box">
+                    By contrast, the merge sort is a relatively efficient sorting algorithm. It involves splitting a given data set in halves 
+                    until single-element sets are formed. Single-element sets of a common parent are compared with each other and sorted. 
+                    These sets are then <color class="red red-hover">merged</color> back together to form a complete, sorted set.
+                </p>
+                <div class="code-container">
+                    <code>
+                        int sta = 0;<br>
+                        int mid = data.<color class="purple">size</color>()/<color class="blue">2</color>;<br>
+                        int end = data.<color class="purple">size</color>();<br>
+                        <br>
+                        int halfOne = mid - sta;<br>
+                        int halfTwo = end - mid;<br>
+                    </code>
+                </div>
+                <p class="caption">
+                    Variables are initialized. These will be used to split 
+                </p>
+            </section>
+        </div>
+    </main>
+</html>
