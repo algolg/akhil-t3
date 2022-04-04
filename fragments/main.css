@@ -96,6 +96,8 @@ main {
     transition: 0.2s;
     float: right;
     text-decoration: none;
+    overflow: scroll;
+    text-align: center;
 }
 .link:hover {
     color: var(--background);
