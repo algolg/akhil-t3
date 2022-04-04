@@ -11,7 +11,7 @@
             </script>
         </head>
         <div>
-            <div class="box rounded-corners" style="float:left;width:20%">
+            <div id="toc" class="box rounded-corners" style="float:left;width:15%;position:fixed;left:-13%;transition:0.2s ease-in-out;" onmouseenter="toggleTOC()" onmouseleave="toggleTOC()">
                 <h3>Table of Contents</h3>
                 <p>
                     <ul class="blue" style="font-size:1vw;">
@@ -23,10 +23,21 @@
                             <li><a class="blue blue-hover" href="#merge">Merge Sort</a></li>
                             <li><a class="blue blue-hover" href="#bubble">Bubble Sort</a></li>
                         </ul>
+                        <li ><a class="blue blue-hover" href="#analysis">Analysis</a></li>
                     </ul>
-                    
                 </p>
             </div>
+            <script>
+                let toc = document.getElementById("toc");
+                function toggleTOC() {
+                    toc.classList.toggle("toc-shown");
+                }
+            </script>
+            <style>
+                .toc-shown {
+                    left: 1% !important;
+                }
+            </style>
             <section class="post">
                 <h1 class="post-title">Sorts and Analysis</h1>
                 <p class="caption">
@@ -173,9 +184,84 @@
             <section class="post">
                 <p class="box rounded-corners post-box">
                     Since Merge Sort's algorithm involves halving a given data set many times, this algorithm has a time complexity of 
-                    <color class="yellow">O(n log(n))</i></color>.
+                    <color class="yellow yellow-hover">O(n log(n))</i></color>.
                 </p>
                 <h3 id="bubble">Bubble Sort</h3>
+                <p class="box rounded-corners post-box">
+                    Bubble Sort was by far the least efficient algorithm I tested, as illustrated by the issues I detailed 
+                    <a class="blue blue-hover" href="#limitations">earlier</a>. I challenged myself to implement the algorithm only using 
+                    classes I made, and I ended up having to use both <color class="yellow yellow-hover">Queues</color> and 
+                    <color class="yellow yellow-hover">Stacks</color> to successfully accomplish this task.
+                </p>
+            </section>
+            <div style="display:flex;width:75%;margin:auto;">
+                <div style="margin:auto;width:25%;">
+                   <div class="code-container">
+                       <code>
+                            Queue&lt;Integer&gt; temp = <color class="red">new</color> Queue<>();<br>
+                            Stack&lt;Integer&gt; newData = <color class="red">new</color> Stack<>();<br>
+                            Queue&lt;Integer&gt; newDataQ = <color class="red">new</color> Queue<>();<br>
+                       </code>
+                   </div>
+                   <p class="caption" style="width:100%;">
+                        Queues and Stacks are initialized. The data Queue will first be sorted into a Stack, and converted into a Queue at the end.
+                   </p>
+                </div>
+                <div style="margin:auto;width:25%;">
+                    <div class="code-container">
+                        <code>
+                            boolean found = <color class="blue">false</color>;<br>
+                            int previous = <color class="blue">-1</color>;<br>
+                            <color class="red">for</color> (int i : data) {<br>&emsp; &emsp; 
+                                <color class="red">if</color> (!found) {<br>&emsp; &emsp; &emsp; &emsp; 
+                                    newData.<color class="purple">push</color>(i);<br>&emsp; &emsp; 
+                                }<br>&emsp; &emsp; 
+                                <color class="red">else</color> {<br>&emsp; &emsp; &emsp; &emsp; 
+                                    temp.<color class="purple">enqueue</color>(i);<br>&emsp; &emsp; 
+                                }<br>&emsp; &emsp; 
+                                <color class="red">if</color> (i < previous) {<br>&emsp; &emsp; &emsp; &emsp; 
+                                    found = <color class="blue">true</color>;<br>&emsp; &emsp; 
+                                }<br>&emsp; &emsp; 
+                                previous = i;<br>
+                            }<br>
+                        </code>
+                    </div>
+                    <p class="caption" style="width:100%">
+                        The data set is parsed for anomolies (where an int is smaller than the previous int). 
+                        Until one is found, terms are added to a Stack. Afterwards, terms are added to a Queue.
+                    </p>
+                </div>
+                <div style="margin:auto;width:25%;">
+                    <div class="code-container">
+                        <code>
+                            int smaller = newData.<color class="purple">peek</color>();<br>
+                            newData.<color class="purple">pop</color>();<br>
+                            int bigger = newData.<color class="purple">peek</color>();<br>
+                            newData.<color class="purple">pop</color>();<br>
+                            newData.<color class="purple">push</color>(smaller);<br>
+                            newData.<color class="purple">push</color>(bigger);<br>
+                            <br>
+                            <color class="red">while</color> (temp.size()>0) {<br>&emsp; &emsp; 
+                                newData.<color class="purple">push</color>(temp.<color class="purple">peek</color>());<br>&emsp; &emsp; 
+                                temp.dequeue();<br>
+                            }<br>
+                        </code>
+                    </div>
+                    <p class="caption" style="width:100%;">
+                        Since the top element of the stack is smaller than the element that precedes it, we switch the two. Then, we add the remaining elements, which were stored in the newData Queue.
+                    </p>
+                </div>
+            </div>
+            <section class="post">
+               <p class="box rounded-corners post-box">
+                    Bubble Sort involves reading all terms of a given data set, and in addition to that, it is a 
+                    <color class="red red-hover">recursive</color> algorithm. Thus, Bubble Sort has a time complexity of 
+                    <color class="yellow yellow-hover">O(n<sup>2</sup>)</color>.
+               </p> 
+               <h1 id="analysis">Analysis</h1>
+               <p class="box rounded-corners post-box">
+                    Funny penguins
+               </p>
             </section>
         </div>
     </main>
