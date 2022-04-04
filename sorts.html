@@ -11,21 +11,25 @@
             </script>
         </head>
         <div>
-            <div id="toc" class="box rounded-corners" style="float:left;width:15%;position:fixed;left:-13%;transition:0.2s ease-in-out;" onmouseenter="toggleTOC()" onmouseleave="toggleTOC()">
-                <h3>Table of Contents</h3>
-                <p>
-                    <ul class="blue" style="font-size:1vw;">
-                        <li ><a class="blue blue-hover" href="#intro">Intro</a><br></li>
-                        <li ><a class="blue blue-hover" href="#limitations">Limitations</a></li>
-                        <li ><a class="blue blue-hover" href="#explanation">Explanation of Code</a></li>
-                        <ul class="blue">
-                            <li><a class="blue blue-hover" href="#selection">Selection Sort</a></li>
-                            <li><a class="blue blue-hover" href="#merge">Merge Sort</a></li>
-                            <li><a class="blue blue-hover" href="#bubble">Bubble Sort</a></li>
+            <div id="toc" style="display:flex;float:left;width:21%;position:fixed;left:-15%;transition:0.2s ease-in-out;" onmouseenter="toggleTOC()" onmouseleave="toggleTOC()">
+                <div style="padding:4%;"></div>
+                <div class="box rounded-corners">
+                    <h3 style="margin-left:5%;font-size:1.3vw;">Table of Contents</h3>
+                    <p>
+                        <ul class="blue" style="font-size:1vw;">
+                            <li><a class="blue blue-hover" href="#intro">Intro</a><br></li>
+                            <li><a class="blue blue-hover" href="#limitations">Limitations</a></li>
+                            <li><a class="blue blue-hover" href="#explanation">Explanation of Code</a></li>
+                            <ul class="blue">
+                                <li><a class="blue blue-hover" href="#selection">Selection Sort</a></li>
+                                <li><a class="blue blue-hover" href="#merge">Merge Sort</a></li>
+                                <li><a class="blue blue-hover" href="#bubble">Bubble Sort</a></li>
+                            </ul>
+                            <li><a class="blue blue-hover" href="#analysis" style="margin-right:0.7vw;">Analysis and Conclusion</a></li>
                         </ul>
-                        <li ><a class="blue blue-hover" href="#analysis">Analysis and Conclusion</a></li>
-                    </ul>
-                </p>
+                    </p>
+                </div>
+                <div style="padding:2%;"></div>
             </div>
             <script>
                 let toc = document.getElementById("toc");
@@ -35,7 +39,7 @@
             </script>
             <style>
                 .toc-shown {
-                    left: 1% !important;
+                    left: 0% !important;
                 }
             </style>
             <section class="post">
