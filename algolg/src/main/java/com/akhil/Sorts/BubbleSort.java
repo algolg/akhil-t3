@@ -51,9 +51,9 @@ public class BubbleSort extends Sort {
     }
 
     public void Sorter(Queue<Integer> data) {
-        // while (!sortChecker(data)) {
+        while (!sortChecker(data)) {
             data = Sort(data);
-        // }
+        }
         sorted = data;
     }
 
