@@ -45,6 +45,7 @@ main {
     width: fit-content;
     margin: auto;
     transition: 0.2s ease-in-out;
+    line-height: 1.5;
 }
 .code-container:hover {
     background-color: #0e1525;
@@ -116,7 +117,7 @@ p {
     font-size: 15px;
     text-align: center;
     margin-top: 0;
-    width: 40%;
+    width: 55%;
     margin-left: auto;
     margin-right: auto; 
 }

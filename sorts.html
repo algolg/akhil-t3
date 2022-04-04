@@ -14,13 +14,14 @@
             <div class="box rounded-corners" style="float:left;width:20%">
                 <h3>Table of Contents</h3>
                 <p>
-                    <ul class="blue">
+                    <ul class="blue" style="font-size:1vw;">
                         <li ><a class="blue blue-hover" href="#intro">Intro</a><br></li>
                         <li ><a class="blue blue-hover" href="#limitations">Limitations</a></li>
                         <li ><a class="blue blue-hover" href="#explanation">Explanation of Code</a></li>
                         <ul class="blue">
                             <li><a class="blue blue-hover" href="#selection">Selection Sort</a></li>
                             <li><a class="blue blue-hover" href="#merge">Merge Sort</a></li>
+                            <li><a class="blue blue-hover" href="#bubble">Bubble Sort</a></li>
                         </ul>
                     </ul>
                     
@@ -89,15 +90,17 @@
                 <div class="code-container">
                     <code>
                         int lowest = Integer.<color class="blue">MAX_VALUE</color>;<br>
-                        <color class="red">for</color> (int i : data) {<br>
-                        &emsp; &emsp; <color class="red">if</color> (i < lowest) {<br>
-                        &emsp; &emsp; &emsp; &emsp; lowest = i;<br>
-                        &emsp; &emsp; }<br>
+                        <color class="red">for</color> (int i : data) {<br>&emsp; &emsp; 
+                            <color class="red">if</color> (i < lowest) {<br>&emsp; &emsp; &emsp; &emsp; 
+                                lowest = i;<br>&emsp; &emsp; 
+                            }<br>
                         }<br>
                     </code>
                 </div>
-                <p class="box rounded-corners post-box">
+                <p class="caption">
                     This chunk of code searches through <code class="blue">data</code>, a Queue of Integers, and finds the lowest term.<br>
+                </p>
+                <p class="box rounded-corners post-box">
                     As one may expect, this algorithm does not scale very well. Until the set is fully sorted, the algorithm searches term-by-term 
                     through the entire set to find the lowest int.<br>
                     Since Selection Sort involves searching through the data set of length <color class="yellow yellow-hover">n</color> 
@@ -110,19 +113,69 @@
                     until single-element sets are formed. Single-element sets of a common parent are compared with each other and sorted. 
                     These sets are then <color class="red red-hover">merged</color> back together to form a complete, sorted set.
                 </p>
-                <div class="code-container">
-                    <code>
-                        int sta = 0;<br>
-                        int mid = data.<color class="purple">size</color>()/<color class="blue">2</color>;<br>
-                        int end = data.<color class="purple">size</color>();<br>
-                        <br>
-                        int halfOne = mid - sta;<br>
-                        int halfTwo = end - mid;<br>
-                    </code>
+            </section>
+            <div style="display:flex;width:75%;margin:auto;">
+                <div style="margin:auto;">
+                    <div class="code-container">
+                        <code>
+                            int sta = 0;<br>
+                            int mid = data.<color class="purple">size</color>()/<color class="blue">2</color>;<br>
+                            int end = data.<color class="purple">size</color>();<br>
+                            <br>
+                            int halfOne = mid - sta;<br>
+                            int halfTwo = end - mid;<br>
+                        </code>
+                    </div>
+                    <p class="caption">
+                        Variables are initialized. These will be used to split the data set into multiple sets.
+                    </p>
                 </div>
-                <p class="caption">
-                    Variables are initialized. These will be used to split 
+                <div style="margin:auto;">
+                    <div class="code-container">
+                        <code>
+                            Queue&lt;Integer&gt; qOne = <color class="red">new</color> Queue<>();<br>
+                            Queue&lt;Integer&gt; qTwo = <color class="red">new</color> Queue<>();<br>
+                            <br>
+                            <color class="red"r>for</color> (int i=<color class="blue">0</color>; i&lt;halfTwo; i++) {<br>&emsp; &emsp; 
+                                qTwo.<color class="purple">enqueue</color>(data.<color class="purple">peek</color>());<br>&emsp; &emsp; 
+                                if (data.<color class="purple">size</color>()><color class="blue">0</color>) {<br>&emsp; &emsp; &emsp; &emsp; 
+                                    data.<color class="purple">dequeue</color>();<br>&emsp; &emsp; 
+                                }<br>
+                            }<br>
+                            <color class="red"r>for</color> (int i=<color class="blue">0</color>; i&lt;halfOne; i++) {<br>&emsp; &emsp; 
+                                qTwo.<color class="purple">enqueue</color>(data.<color class="purple">peek</color>());<br>&emsp; &emsp; 
+                                if (data.<color class="purple">size</color>()><color class="blue">0</color>) {<br>&emsp; &emsp; &emsp; &emsp; 
+                                    data.<color class="purple">dequeue</color>();<br>&emsp; &emsp; 
+                                }<br>
+                            }<br>
+                        </code>
+                    </div>
+                    <p class="caption" style="width:90%;">
+                        Queues are initialized. The original data set is split into two sets.
+                    </p>
+                </div>
+                <div style="margin:auto;">
+                    <div class="code-container">
+                        <code>
+                            <color class="red">if</color> (qOne.<color class="purple">size</color>()><color class="blue">1</color>) {<br>&emsp; &emsp; 
+                                qOne = <color class="purple">Sort</color>(qOne);<br>
+                            }<b></b>
+                            <color class="red">if</color> (qTwo.<color class="purple">size</color>()><color class="blue">1</color>) {<br>&emsp; &emsp; 
+                                qTwo = <color class="purple">Sort</color>(qTwo);<br>
+                            }<br>
+                        </code>
+                    </div>
+                    <p class="caption">
+                        These Queues are then split further until they only contain one element
+                    </p>
+                </div>
+            </div>
+            <section class="post">
+                <p class="box rounded-corners post-box">
+                    Since Merge Sort's algorithm involves halving a given data set many times, this algorithm has a time complexity of 
+                    <color class="yellow">O(n log(n))</i></color>.
                 </p>
+                <h3 id="bubble">Bubble Sort</h3>
             </section>
         </div>
     </main>
