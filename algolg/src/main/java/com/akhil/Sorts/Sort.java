@@ -3,15 +3,15 @@ package com.akhil.Sorts;
 import com.akhil.DataTypes.Queue;
 
 public class Sort {
-    protected static Queue<Integer> data = new Queue<>();
+    protected static final Queue<Integer> data = new Queue<>();
     protected Queue<Integer> sorted = new Queue<>();
     private long start;
     private long end;
     
     public void generateData() {
-        for (int i=0; i<10; i++) {
-            // data.enqueue( (int) (Math.random()*1000) );
-            data.enqueue( 9-i );
+        for (int i=0; i<500; i++) {
+            data.enqueue( (int) (Math.random()*10000) );
+            // data.enqueue( i );
         }
     }
 
@@ -68,9 +68,11 @@ public class Sort {
         Sort sort = new Sort();
         SelectionSort selection = new SelectionSort();
         BubbleSort bubble = new BubbleSort();
+        MergeSort merge = new MergeSort();
 
         sort.generateData();
-        System.out.println("Selection Sort:\n" + selection);
-        System.out.println("Bubble Sort:\n" + bubble);
+        System.out.println("Selection Sort:\n" + selection + "\n");
+        System.out.println("Bubble Sort:\n" + bubble + "\n");
+        System.out.println("Merge Sort:\n" + merge + "\n");
     }
 }

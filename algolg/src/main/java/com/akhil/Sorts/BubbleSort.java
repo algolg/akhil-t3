@@ -5,7 +5,7 @@ import com.akhil.DataTypes.Stack;
 
 public class BubbleSort extends Sort {
     
-    public void Sort(Queue<Integer> data) {
+    public Queue<Integer> Sort(Queue<Integer> data) {
         Queue<Integer> temp = new Queue<>();
         Stack<Integer> newData = new Stack<>();
         Queue<Integer> newDataQ = new Queue<>();
@@ -32,29 +32,37 @@ public class BubbleSort extends Sort {
         newData.push(smaller);
         newData.push(bigger);
 
-
         while (temp.size()>0) {
             newData.push(temp.peek());
             temp.dequeue();
         }
 
-
         for (int i : newData) {
             newDataQ.enqueue(i);
         }
-        sorted = newDataQ;
+        return newDataQ;
+        // System.out.println(sorted.formattedString());
+        // System.out.println();
 
-        if (!sortChecker(newDataQ)) {
-            Sort(newDataQ);
-        }
+        // if (!sortChecker(newDataQ)) {
+        //     Sort(newDataQ);
+        // }
 
+    }
+
+    public void Sorter(Queue<Integer> data) {
+        // while (!sortChecker(data)) {
+            data = Sort(data);
+        // }
+        sorted = data;
     }
 
     public String toString() {
         setStartTime();
-        Sort(getData());
+        Sorter(getData());
         setEndTime();
-        return(getSort() + " in " + getTimeElapsed());
+        // return(getSort() + " in " + getTimeElapsed());
+        return("Sorted in " + getTimeElapsed());
     }
 
     public static void main(String[] args) {

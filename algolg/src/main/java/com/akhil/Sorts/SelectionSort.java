@@ -32,7 +32,8 @@ public class SelectionSort extends Sort {
         setStartTime();
         Sort(getData());
         setEndTime();
-        return(getSort() + " in " + getTimeElapsed());
+        // return(getSort() + " in " + getTimeElapsed());
+        return("Sorted in " + getTimeElapsed());
     }
 
     public static void main(String[] args) {
