@@ -202,6 +202,9 @@ color {
     .code-section > div {
         width: 100% !important;
     }
+    .bar-title {
+        font-size: 25px;
+    }
 
     #toc {
         margin: auto;
@@ -210,10 +213,10 @@ color {
         position: inherit !important;
     }
     #toc-title {
-        font-size: inherit !important;
+        font-size: 30px !important;
     }
     #toc-list {
-        font-size: inherit !important;
+        font-size: 30px !important;
         line-height: 1.5;
     }
     #toc-padding-left, #toc-padding-right {
@@ -234,6 +237,9 @@ color {
     .main-link {
         display: none;
     }
+    .link {
+        font-size: 40px;
+    }
     /* TOGGLE */
     .bar-title-display {
         display: none;
@@ -246,5 +252,13 @@ color {
     }
     .main-link-responsive {
         display: inherit;
+    }
+
+    /* CODE */
+    code {
+        font-size: 200%;
+    }
+    .caption {
+        font-size: 150%;
     }
 }
