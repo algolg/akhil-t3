@@ -50,6 +50,11 @@ main {
 .code-container:hover {
     background-color: #0e1525;
 }
+.code-section {
+    display:flex;
+    width:75%;
+    margin:auto;
+}
 .code-highlight {
     background-color: var(--foreground);
     color: #11161A;
@@ -167,4 +172,38 @@ color {
 }
 .purple {
     color: #7546eb;
+}
+
+/* RESPONSIVE DESIGN */
+
+@media screen and (max-width: 800px) {
+    .code-section {
+        display: block;
+    }
+    .post {
+        width: 90%;
+    }
+    .code-section > div {
+        width: 100% !important;
+    }
+    #toc {
+        margin: auto;
+        float: none !important;
+        width: 100% !important;
+        position: inherit !important;
+    }
+    #toc-title {
+        font-size: inherit !important;
+    }
+    #toc-list {
+        font-size: inherit !important;
+        line-height: 1.5;
+    }
+    #toc-padding-left, #toc-padding-right {
+        display:none;
+    }
+    #toc-main {
+        background-color: transparent;
+        margin: 0 auto;
+    }
 }

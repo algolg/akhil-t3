@@ -12,11 +12,11 @@
         </head>
         <div>
             <div id="toc" style="display:flex;float:left;width:21%;position:fixed;left:-13%;transition:0.2s ease-in-out;" onmouseenter="toggleTOC()" onmouseleave="toggleTOC()">
-                <div style="padding:4%;"></div>
-                <div class="box rounded-corners">
-                    <h3 style="margin-left:5%;font-size:1.3vw;">Table of Contents</h3>
+                <div id="toc-padding-left" style="padding:4%;"></div>
+                <div id="toc-main" class="box rounded-corners">
+                    <h3 id="toc-title" style="margin-left:5%;font-size:1.3vw;">Table of Contents</h3>
                     <p>
-                        <ul class="blue" style="font-size:1vw;">
+                        <ul id="toc-list" class="blue" style="font-size:1vw;">
                             <li><a class="blue blue-hover" href="#intro">Intro</a><br></li>
                             <li><a class="blue blue-hover" href="#limitations">Limitations</a></li>
                             <li><a class="blue blue-hover" href="#explanation">Explanation of Code</a></li>
@@ -29,7 +29,7 @@
                         </ul>
                     </p>
                 </div>
-                <div style="padding:2%;"></div>
+                <div id="toc-padding-right" style="padding:2%;"></div>
             </div>
             <script>
                 let toc = document.getElementById("toc");
@@ -134,7 +134,7 @@
                     <color class="yellow yellow-hover">few comparisons and swaps</color>.
                 </p>
             </section>
-            <div style="display:flex;width:75%;margin:auto;">
+            <div class="code-section">
                 <div style="margin:auto;">
                     <div class="code-container">
                         <code>
@@ -206,7 +206,7 @@
                     <color class="red red-hover">I do not know why it is called Bubble Sort</color>.
                 </p>
             </section>
-            <div style="display:flex;width:75%;margin:auto;">
+            <div class="code-section">
                 <div style="margin:auto;width:25%;">
                    <div class="code-container">
                        <code>
