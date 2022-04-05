@@ -10,7 +10,7 @@ public class Sort {
     private long end;
     
     public void generateData() {
-        for (int i=0; i<500; i++) {
+        for (int i=0; i<10; i++) {
             data.enqueue( (int) (Math.random()*10000) );
             // data.enqueue( i );
         }

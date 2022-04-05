@@ -6,6 +6,33 @@ import com.akhil.DataTypes.Stack;
 public class BubbleSort extends Sort {
     
     public Queue<Integer> Sort(Queue<Integer> data) {
+
+        // Iterate like a bubble sort
+        for (int j = 1; j < data.size(); j++) {
+            for (int i = 0; i < data.size() - j; i++) {
+                // Look at the current value and the next value in the queue
+                int temp = data.peek();
+                data.dequeue();
+                int tempPlusOne = data.peek();
+
+                // System.out.println to see if it's actually doing anything
+                System.out.println("Something");
+
+                // If they're out of order, Swap em
+                if (temp > tempPlusOne) {
+                    data.dequeue();
+                    data.enqueue(temp);
+                    data.enqueue(tempPlusOne);
+                }
+                // If they're fine, don't swap em, put back the thing I dequeued
+                else {
+                    data.enqueue(temp);
+                }
+            }
+        }
+
+        return data;
+        /*
         Queue<Integer> temp = new Queue<>();
         Stack<Integer> newData = new Stack<>();
         Queue<Integer> newDataQ = new Queue<>();
@@ -41,13 +68,14 @@ public class BubbleSort extends Sort {
             newDataQ.enqueue(i);
         }
         return newDataQ;
+        */
+
         // System.out.println(sorted.formattedString());
         // System.out.println();
 
         // if (!sortChecker(newDataQ)) {
         //     Sort(newDataQ);
         // }
-
     }
 
     public void Sorter(Queue<Integer> data) {
