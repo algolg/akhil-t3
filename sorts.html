@@ -66,14 +66,13 @@
                 </p>
                 <div class="code-container">
                     <code>
-                        Selection Sort:<br>
-                        Sorted in 180555506<br>
-                        <br>
-                        ^C<color class="code-highlight">%</color><br>
-                        <br>
-                        <color class="cyan">akhil-t3</color> on <color class="purple"> main</color> 
-                        <color class="red">[⇡$!+]</color> took <color class="yellow">24m 30s</color>
-                    </code>
+<pre>Selection Sort:
+Sorted in 180555506
+
+^C<color class="code-highlight">%</color>
+
+<color class="cyan">akhil-t3</color> on <color class="purple"> main</color> 
+<color class="red">[⇡$!+]</color> took <color class="yellow">24m 30s</color></pre></code>
                 </div>
                 <p class="caption">
                     The program was set to run selection, then bubble, then merge sort.<br>
@@ -93,7 +92,7 @@
                     Queue for storing times, a method to add times to the <color class="red red-hover">Queue</color>, a 
                     <color class="red red-hover">method</color> to average all times (removing the lowest and highest times), and a 
                     <color class="red red-hover">method</color> to make sure the sorted Queue really is sorted. Along with those, the 
-                    Sort class contains the <code class="yellow">generateData()</code> method, which fills the 
+                    Sort class contains the <code class="yellow">generateData()</pre></code> method, which fills the 
                     <color color="red">static</color> data Queue with <a class="blue blue-hover" href="#limitations">500</a> random ints. 
                     I made the data variable static to ensure that it was constant across all of the subclass sorting algorithms.
                 </p>
@@ -108,16 +107,16 @@
                 </p>
                 <div class="code-container">
                     <code>
-                        int lowest = Integer.<color class="blue">MAX_VALUE</color>;<br>
-                        <color class="red">for</color> (int i : data) {<br>&emsp; &emsp; 
-                            <color class="red">if</color> (i < lowest) {<br>&emsp; &emsp; &emsp; &emsp; 
-                                lowest = i;<br>&emsp; &emsp; 
-                            }<br>
-                        }<br>
+<pre>int lowest = Integer.<color class="blue">MAX_VALUE</color>;
+<color class="red">for</color> (int i : data) {
+    <color class="red">if</color> (i < lowest) {
+        lowest = i;
+    }
+}</pre>
                     </code>
                 </div>
                 <p class="caption">
-                    This chunk of code searches through <code class="blue">data</code>, a Queue of Integers, and finds the lowest term.<br>
+                    This chunk of code searches through <code class="blue">data</pre></code>, a Queue of Integers, and finds the lowest term.<br>
                 </p>
                 <p class="box rounded-corners post-box">
                     As one may expect, this algorithm does not scale very well. Until the set is fully sorted, the algorithm searches term-by-term 
@@ -139,12 +138,12 @@
                 <div style="margin:auto;">
                     <div class="code-container">
                         <code>
-                            int sta = 0;<br>
-                            int mid = data.<color class="purple">size</color>()/<color class="blue">2</color>;<br>
-                            int end = data.<color class="purple">size</color>();<br>
-                            <br>
-                            int halfOne = mid - sta;<br>
-                            int halfTwo = end - mid;<br>
+<pre>int sta = 0;
+int mid = data.<color class="purple">size</color>()/<color class="blue">2</color>;
+int end = data.<color class="purple">size</color>();
+
+int halfOne = mid - sta;
+int halfTwo = end - mid;</pre>
                         </code>
                     </div>
                     <p class="caption">
@@ -154,21 +153,21 @@
                 <div style="margin:auto;">
                     <div class="code-container">
                         <code>
-                            Queue&lt;Integer&gt; qOne = <color class="red">new</color> Queue<>();<br>
-                            Queue&lt;Integer&gt; qTwo = <color class="red">new</color> Queue<>();<br>
-                            <br>
-                            <color class="red"r>for</color> (int i=<color class="blue">0</color>; i&lt;halfTwo; i++) {<br>&emsp; &emsp; 
-                                qTwo.<color class="purple">enqueue</color>(data.<color class="purple">peek</color>());<br>&emsp; &emsp; 
-                                if (data.<color class="purple">size</color>()><color class="blue">0</color>) {<br>&emsp; &emsp; &emsp; &emsp; 
-                                    data.<color class="purple">dequeue</color>();<br>&emsp; &emsp; 
-                                }<br>
-                            }<br>
-                            <color class="red"r>for</color> (int i=<color class="blue">0</color>; i&lt;halfOne; i++) {<br>&emsp; &emsp; 
-                                qTwo.<color class="purple">enqueue</color>(data.<color class="purple">peek</color>());<br>&emsp; &emsp; 
-                                if (data.<color class="purple">size</color>()><color class="blue">0</color>) {<br>&emsp; &emsp; &emsp; &emsp; 
-                                    data.<color class="purple">dequeue</color>();<br>&emsp; &emsp; 
-                                }<br>
-                            }<br>
+<pre>Queue&lt;Integer&gt; qOne = <color class="red">new</color> Queue<>();
+Queue&lt;Integer&gt; qTwo = <color class="red">new</color> Queue<>();
+
+<color class="red"r>for</color> (int i=<color class="blue">0</color>; i&lt;halfTwo; i++) {
+    qTwo.<color class="purple">enqueue</color>(data.<color class="purple">peek</color>());
+    if (data.<color class="purple">size</color>()><color class="blue">0</color>) {
+        data.<color class="purple">dequeue</color>();
+    }
+}
+<color class="red"r>for</color> (int i=<color class="blue">0</color>; i&lt;halfOne; i++) {
+    qTwo.<color class="purple">enqueue</color>(data.<color class="purple">peek</color>());
+    if (data.<color class="purple">size</color>()><color class="blue">0</color>) {
+        data.<color class="purple">dequeue</color>();
+    }
+}</pre>
                         </code>
                     </div>
                     <p class="caption" style="width:90%;">
@@ -178,12 +177,12 @@
                 <div style="margin:auto;">
                     <div class="code-container">
                         <code>
-                            <color class="red">if</color> (qOne.<color class="purple">size</color>()><color class="blue">1</color>) {<br>&emsp; &emsp; 
-                                qOne = <color class="purple">Sort</color>(qOne);<br>
-                            }<b></b>
-                            <color class="red">if</color> (qTwo.<color class="purple">size</color>()><color class="blue">1</color>) {<br>&emsp; &emsp; 
-                                qTwo = <color class="purple">Sort</color>(qTwo);<br>
-                            }<br>
+<pre><color class="red">if</color> (qOne.<color class="purple">size</color>()><color class="blue">1</color>) {
+    qOne = <color class="purple">Sort</color>(qOne);
+}
+<color class="red">if</color> (qTwo.<color class="purple">size</color>()><color class="blue">1</color>) {
+    qTwo = <color class="purple">Sort</color>(qTwo);
+}</pre>
                         </code>
                     </div>
                     <p class="caption">
@@ -211,32 +210,32 @@
                 <div style="margin:auto;width:25%;">
                    <div class="code-container">
                        <code>
-                            Queue&lt;Integer&gt; temp = <color class="red">new</color> Queue<>();<br>
-                            Stack&lt;Integer&gt; newData = <color class="red">new</color> Stack<>();<br>
-                            Queue&lt;Integer&gt; newDataQ = <color class="red">new</color> Queue<>();<br>
-                       </code>
-                   </div>
-                   <p class="caption" style="width:100%;">
-                        Queues and Stacks are initialized. The data Queue will first be sorted into a Stack, and converted into a Queue at the end.
-                   </p>
+<pre>Queue&lt;Integer&gt; temp = <color class="red">new</color> <br>Queue<>();
+Stack&lt;Integer&gt; newData = <color class="red">new</color> <br>Stack<>();
+Queue&lt;Integer&gt; newDataQ = <color class="red">new</color> <br>Queue<>();</pre>
+                        </code>
+                    </div>
+                    <p class="caption" style="width:100%;">
+                            Queues and Stacks are initialized. The data Queue will first be sorted into a Stack, and converted into a Queue at the end.
+                    </p>
                 </div>
                 <div style="margin:auto;width:25%;">
                     <div class="code-container">
                         <code>
-                            boolean found = <color class="blue">false</color>;<br>
-                            int previous = <color class="blue">-1</color>;<br>
-                            <color class="red">for</color> (int i : data) {<br>&emsp; &emsp; 
-                                <color class="red">if</color> (!found) {<br>&emsp; &emsp; &emsp; &emsp; 
-                                    newData.<color class="purple">push</color>(i);<br>&emsp; &emsp; 
-                                }<br>&emsp; &emsp; 
-                                <color class="red">else</color> {<br>&emsp; &emsp; &emsp; &emsp; 
-                                    temp.<color class="purple">enqueue</color>(i);<br>&emsp; &emsp; 
-                                }<br>&emsp; &emsp; 
-                                <color class="red">if</color> (i < previous) {<br>&emsp; &emsp; &emsp; &emsp; 
-                                    found = <color class="blue">true</color>;<br>&emsp; &emsp; 
-                                }<br>&emsp; &emsp; 
-                                previous = i;<br>
-                            }<br>
+<pre>boolean found = <color class="blue">false</color>;
+int previous = <color class="blue">-1</color>;
+<color class="red">for</color> (int i : data) {
+    <color class="red">if</color> (!found) {
+        newData.<color class="purple">push</color>(i);
+    }
+    <color class="red">else</color> {
+        temp.<color class="purple">enqueue</color>(i);
+    }
+    <color class="red">if</color> (i < previous) {
+        found = <color class="blue">true</color>;
+    }
+    previous = i;
+}</pre>
                         </code>
                     </div>
                     <p class="caption" style="width:100%">
@@ -247,17 +246,17 @@
                 <div style="margin:auto;width:25%;">
                     <div class="code-container">
                         <code>
-                            int smaller = newData.<color class="purple">peek</color>();<br>
-                            newData.<color class="purple">pop</color>();<br>
-                            int bigger = newData.<color class="purple">peek</color>();<br>
-                            newData.<color class="purple">pop</color>();<br>
-                            newData.<color class="purple">push</color>(smaller);<br>
-                            newData.<color class="purple">push</color>(bigger);<br>
-                            <br>
-                            <color class="red">while</color> (temp.size()>0) {<br>&emsp; &emsp; 
-                                newData.<color class="purple">push</color>(temp.<color class="purple">peek</color>());<br>&emsp; &emsp; 
-                                temp.dequeue();<br>
-                            }<br>
+<pre>int smaller = newData.<color class="purple">peek</color>();
+newData.<color class="purple">pop</color>();
+int bigger = newData.<color class="purple">peek</color>();
+newData.<color class="purple">pop</color>();
+newData.<color class="purple">push</color>(smaller);
+newData.<color class="purple">push</color>(bigger);
+
+<color class="red">while</color> (temp.size()>0) {
+    newData.<color class="purple">push</color>(temp.<color class="purple">peek</color>());
+    temp.dequeue();
+}<br></pre>
                         </code>
                     </div>
                     <p class="caption" style="width:100%;">
@@ -279,10 +278,10 @@
                 </p>
                 <div class="code-container">
                     <code>
-                        AVERAGES (EXCL. MAX AND MIN)<br>
-                        Selection Sort: 1919297 ns<br>
-                        Bubble Sort:    1031338857 ns<br>
-                        Merge Sort:     412588 ns<br>
+<pre>AVERAGES (EXCL. MAX AND MIN)
+Selection Sort: 1919297 ns
+Bubble Sort:    1031338857 ns
+Merge Sort:     412588 ns</pre>
                     </code>
                 </div>
                 <p class="box rounded-corners post-box">
