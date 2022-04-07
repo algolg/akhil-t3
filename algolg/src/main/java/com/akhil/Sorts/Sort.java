@@ -11,9 +11,8 @@ public class Sort {
     private long end;
     
     public void generateData() {
-        for (int i=0; i<20; i++) {
-            // data.enqueue( (int) (Math.random()*10000) );
-            data.enqueue( 19-i );
+        for (int i=0; i<5000; i++) {
+            data.enqueue( (int) (Math.random()*5000) );
         }
     }
 

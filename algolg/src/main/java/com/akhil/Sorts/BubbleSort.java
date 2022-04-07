@@ -1,20 +1,14 @@
 package com.akhil.Sorts;
 
 import com.akhil.DataTypes.Queue;
-import com.akhil.DataTypes.Stack;
 import com.akhil.DataTypes.Node;
 
 public class BubbleSort extends Sort {
     
     public Queue<Integer> Sort(Queue<Integer> data) {
-        Queue<Integer> temp = new Queue<>();
-        Stack<Integer> newData = new Stack<>();
-        Queue<Integer> newDataQ = new Queue<>();
 
-        boolean found = false;
         Node<Integer> node = data.tail.next;
 
-        System.out.println(data.formattedString());
         while (node != null) {
 
             if (node.data < node.prev.data) {
@@ -45,8 +39,8 @@ public class BubbleSort extends Sort {
         Sorter(getData());
         setEndTime();
         times.enqueue(getTimeElapsed());
-        return(getSort() + " in " + getTimeElapsed());
-        // return("Sorted in " + getTimeElapsed() + " ns");
+        // return(getSort() + " in " + getTimeElapsed());
+        return("Sorted in " + getTimeElapsed() + " ns");
     }
 
     public static void main(String[] args) {
