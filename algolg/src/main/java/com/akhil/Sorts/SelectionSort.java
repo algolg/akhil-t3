@@ -1,26 +1,31 @@
 package com.akhil.Sorts;
 
 import com.akhil.DataTypes.Queue;
+import com.akhil.DataTypes.Node;
 
 public class SelectionSort extends Sort {
 
     public void Sort(Queue<Integer> data) {
         int lowest = Integer.MAX_VALUE;
-        for (int i : data) {
-            if (i < lowest) {
-                lowest = i;
+        Node<Integer> node = data.tail;
+        while (node != null) {
+            if (node.data < lowest) {
+                lowest = node.data;
             }
+            node = node.next;
         }
         sorted.enqueue(lowest);
         Queue<Integer> newData = new Queue<>();
         int appeared = 0;
-        for (int i : data) {
-            if (i != lowest || appeared != 0) {
-                newData.enqueue(i);
+        node = data.tail;
+        while (node != null) {
+            if (node.data != lowest || appeared != 0) {
+                newData.enqueue(node.data);
             }
-            else if (i == lowest) {
+            else if (node.data == lowest) {
                 appeared++;
             }
+            node = node.next;
         }
         if (newData.size() > 0) {
             Sort(newData);

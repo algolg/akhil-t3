@@ -97,8 +97,7 @@ public class Calculator {
             }
         }
         while (calc.size() > 0) {
-            String i = String.valueOf(calc.peek());
-            // System.out.println(i);
+            String i = String.valueOf(calc.peek().data);
             if (isNum(i)) {
                 i = fullInt("", calc);
                 output.enqueue(Float.parseFloat(i));
@@ -119,7 +118,7 @@ public class Calculator {
     public void calcToRPN() {
         Queue<Object> calc = tokenize();
         while (calc.size() > 0) {
-            String i = String.valueOf(calc.peek());
+            String i = String.valueOf(calc.peek().data);
             if (isNum(i)) {
                 output.enqueue(Float.parseFloat(i));
                 calc.dequeue();
@@ -173,7 +172,7 @@ public class Calculator {
     public float compute() {
         ArrayList<String> eq = new ArrayList<>();
         while (output.size() > 0) {
-            eq.add(String.valueOf(output.peek()));
+            eq.add(String.valueOf(output.peek().data));
             output.dequeue();
         }
         eq = process(eq);
@@ -235,10 +234,10 @@ public class Calculator {
     }
 
     public String fullInt(String num, Queue calc) {
-        num += String.valueOf(calc.peek());
+        num += String.valueOf(calc.peek().data);
         calc.dequeue();
         if (calc.size()>0) {
-            if (isNum(String.valueOf(calc.peek())) || calc.peek().equals(".")) {
+            if (isNum(String.valueOf(calc.peek().data)) || calc.peek().data.equals(".")) {
                 num = fullInt(num, calc);
             }
         }

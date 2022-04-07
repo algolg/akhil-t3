@@ -18,13 +18,13 @@ public class MergeSort extends Sort {
         Queue<Integer> qTwo = new Queue<>();
 
         for (int i=0; i<halfTwo; i++) {
-            qTwo.enqueue(data.peek());
+            qTwo.enqueue(data.peek().data);
             if (data.size()>0) {
                 data.dequeue();
             }
         }
         for (int i=0; i<halfOne; i++) {
-            qOne.enqueue(data.peek());
+            qOne.enqueue(data.peek().data);
             if (data.size()>0) {
                 data.dequeue();
             }
@@ -42,27 +42,27 @@ public class MergeSort extends Sort {
         int i = 0;
         int j = 0;
         while (qOne.peek() != null && qTwo.peek() != null) {
-            if (qOne.peek() <= qTwo.peek()) {
-                sorted.enqueue(qOne.peek());
+            if (qOne.peek().data <= qTwo.peek().data) {
+                sorted.enqueue(qOne.peek().data);
                 qOne.dequeue();
                 i++;
             }
             else {
-                sorted.enqueue(qTwo.peek());
+                sorted.enqueue(qTwo.peek().data);
                 qTwo.dequeue();
                 j++;
             }
         }
 
         while (i < halfOne) {
-            sorted.enqueue(qOne.peek());
+            sorted.enqueue(qOne.peek().data);
             if (qOne.size()>0) {
                 qOne.dequeue();
             }
             i++;
         }
         while (j < halfTwo) {
-            sorted.enqueue(qTwo.peek());
+            sorted.enqueue(qTwo.peek().data);
             if (qTwo.size()>0) {
                 qTwo.dequeue();
             }

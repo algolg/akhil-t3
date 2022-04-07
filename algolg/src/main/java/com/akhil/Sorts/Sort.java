@@ -1,6 +1,7 @@
 package com.akhil.Sorts;
 
 import com.akhil.DataTypes.Queue;
+import com.akhil.DataTypes.Node;
 
 public class Sort {
     protected static final Queue<Integer> data = new Queue<>();
@@ -11,8 +12,8 @@ public class Sort {
     
     public void generateData() {
         for (int i=0; i<500; i++) {
-            data.enqueue( (int) (Math.random()*10000) );
-            // data.enqueue( i );
+            // data.enqueue( (int) (Math.random()*10000) );
+            data.enqueue( i );
         }
     }
 
@@ -22,32 +23,32 @@ public class Sort {
 
     public boolean sortChecker(Queue<Integer> sort) {
         boolean done = true;
-        int previous = -1;
-        for (int i : sort) {
-            if (i < previous) {
+        Node<Integer> node = sort.tail.next;
+        while (node != null) {
+            if (node.data < node.prev.data) {
                 done = false;
                 break;
             }
-            previous = i;
+            node = node.next;
         }
         return done;
     }
 
-    public int anomoly(Queue<Integer> sort) {
-        // int index = 0;
-        int output = -1;
-        int previous = -1;
-        for (int i : sort) {
-            if (i < previous) {
-                // output = index;
-                output = i;
-                break;
-            }
-            // index++;
-            previous = i;
-        }
-        return output;
-    }
+    // public int anomoly(Queue<Integer> sort) {
+    //     // int index = 0;
+    //     int output = -1;
+    //     int previous = -1;
+    //     for (int i : sort) {
+    //         if (i < previous) {
+    //             // output = index;
+    //             output = i;
+    //             break;
+    //         }
+    //         // index++;
+    //         previous = i;
+    //     }
+    //     return output;
+    // }
 
     public String getSort() {
         return sorted.formattedString();
@@ -74,21 +75,28 @@ public class Sort {
         long highest = 0;
         Queue<Long> newTimes = new Queue<>();
         long sum = 0;
-        for (long i : times) {
-            if (i < lowest) {
-                lowest = i;
+
+        Node<Long> node = times.tail;
+        while (node != null) {
+            if (node.data < lowest) {
+                lowest = node.data;
             }
-            if (i > highest) {
-                highest = i;
+            if (node.data > highest) {
+                highest = node.data;
             }
+            node = node.next;
         }
-        for (long i : times) {
-            if (i != lowest && i != highest) {
-                newTimes.enqueue(i);
+        node = times.tail;
+        while (node != null) {
+            if (node.data != lowest && node.data != highest) {
+                newTimes.enqueue(node.data);
             }
+            node = node.next;
         }
-        for (long i : newTimes) {
-            sum += i;
+        node = newTimes.tail;
+        while (node != null) {
+            sum += node.data;
+            node = node.next;
         }
         return sum/((long) newTimes.size());
     }

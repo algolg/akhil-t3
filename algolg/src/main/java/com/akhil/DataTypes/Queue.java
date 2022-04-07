@@ -3,52 +3,86 @@ package com.akhil.DataTypes;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class Queue<T> implements Iterable<T> {
-    private ArrayList<T> queue = new ArrayList<T>();
+public class Queue<T> {
+    public Node<T> tail = new Node<>();
+    public Node<T> head = new Node<>();
+    private int length = 0;
     
-    public void enqueue(T e) {
-        this.queue.add(e);
+    public void enqueue(T data) {
+        enqueue(new Node<T>(data));
+    }
+
+    public void enqueue(Node<T> data) {
+        if (length == 0) {
+            this.tail = data;
+            tail.prev = null;
+            tail.next = null;
+        }
+        else if (head.prev == null) {
+            this.head = data;
+            head.prev = tail;
+            tail.next = head;
+        }
+        else {
+            head.next = data;
+            data.prev = head;
+            head = data;
+            head.next = null;
+        }
+        length++;
+
     }
 
     public void dequeue() {
-        this.queue.remove(0);
+        tail = tail.next;
+        length--;
     }
 
-    public T peek() {
-        if (queue.size() > 0) {
-            return this.queue.get(0);
-        }
-        else {
-            return null;
-        }
+    public Node<T> peek() {
+        return tail;
+    }
+
+    public void swap(Node<T> first, Node<T> second) {
+        Node<T> temp = first;
+        first.data = second.data;
+        second.data = temp.data;
     }
 
     public int size() {
-        return this.queue.size();
+        return length;
     }
 
     public String toString() {
         String output = "";
-        for (T i : queue) {
-            output += i + " ";
+        Node<T> node = tail;
+        while (node != null) {
+            output += node.data + " ";
+            node = node.next;
         }
         return output;
     }
 
     public String formattedString() {
         String output = "[";
-        if (queue.size()>0) {
-            for (Object i : queue) {
-                output += i + ", ";
-            }
-            output = output.substring(0, output.length()-2) + "]";
-            return output;
+        Node<T> node = tail;
+        while (node != null) {
+            output += node.data + ", ";
+            node = node.next;
         }
-        return null;
+        output = output.substring(0, output.length()-2) + "]";
+        return output;
     }
 
-    @Override
-    public Iterator<T> iterator() {
-        return queue.iterator();
+    public static void main(String[] args) {
+        Queue<Integer> queue = new Queue<>();
+        queue.enqueue(new Node<Integer>(1));
+        queue.enqueue(new Node<Integer>(2));
+        queue.enqueue(new Node<Integer>(3));
+        queue.enqueue(new Node<Integer>(4));
+        queue.enqueue(new Node<Integer>(5));
+        System.out.println();
+        System.out.println(queue.formattedString());
+        queue.dequeue();
+        System.out.println(queue.formattedString());
     }
 }

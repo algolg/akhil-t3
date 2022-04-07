@@ -2,6 +2,7 @@ package com.akhil.Sorts;
 
 import com.akhil.DataTypes.Queue;
 import com.akhil.DataTypes.Stack;
+import com.akhil.DataTypes.Node;
 
 public class BubbleSort extends Sort {
     
@@ -11,36 +12,17 @@ public class BubbleSort extends Sort {
         Queue<Integer> newDataQ = new Queue<>();
 
         boolean found = false;
-        int previous = -1;
-        for (int i : data) {
-            if (!found) {
-                newData.push(i);
+        Node<Integer> node = data.tail.next;
+        while (node != null) {
+
+            if (node.data < node.prev.data) {
+                data.swap(node, node.prev);
             }
-            else {
-                temp.enqueue(i);
-            }
-            if (i < previous) {
-                found = true;
-            }
-            previous = i;
+
+            node = node.next;
         }
 
-        int smaller = newData.peek();
-        newData.pop();
-        int bigger = newData.peek();
-        newData.pop();
-        newData.push(smaller);
-        newData.push(bigger);
-
-        while (temp.size()>0) {
-            newData.push(temp.peek());
-            temp.dequeue();
-        }
-
-        for (int i : newData) {
-            newDataQ.enqueue(i);
-        }
-        return newDataQ;
+        return data;
         // System.out.println(sorted.formattedString());
         // System.out.println();
 
@@ -62,8 +44,8 @@ public class BubbleSort extends Sort {
         Sorter(getData());
         setEndTime();
         times.enqueue(getTimeElapsed());
-        // return(getSort() + " in " + getTimeElapsed());
-        return("Sorted in " + getTimeElapsed() + " ns");
+        return(getSort() + " in " + getTimeElapsed());
+        // return("Sorted in " + getTimeElapsed() + " ns");
     }
 
     public static void main(String[] args) {
