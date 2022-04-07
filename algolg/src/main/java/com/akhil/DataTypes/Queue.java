@@ -43,9 +43,18 @@ public class Queue<T> {
     }
 
     public void swap(Node<T> first, Node<T> second) {
-        Node<T> temp = first;
-        first.data = second.data;
-        second.data = temp.data;
+        Node<T> node = tail;
+        while (node != null) {
+            if (node.equals(first)) {
+                System.out.println(node.data + " " + second.data);
+                node.data = second.data;
+            }
+            else if (node.equals(second)) {
+                System.out.println(node.data + " " + first.data);
+                node.data = first.data;
+            }
+            node = node.next;
+        }
     }
 
     public int size() {

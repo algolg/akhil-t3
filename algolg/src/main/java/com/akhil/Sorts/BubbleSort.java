@@ -13,6 +13,8 @@ public class BubbleSort extends Sort {
 
         boolean found = false;
         Node<Integer> node = data.tail.next;
+
+        System.out.println(data.formattedString());
         while (node != null) {
 
             if (node.data < node.prev.data) {
@@ -21,7 +23,6 @@ public class BubbleSort extends Sort {
 
             node = node.next;
         }
-
         return data;
         // System.out.println(sorted.formattedString());
         // System.out.println();
