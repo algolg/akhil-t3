@@ -17,6 +17,7 @@ public class MergeSort extends Sort {
         Queue<Integer> qOne = new Queue<>();
         Queue<Integer> qTwo = new Queue<>();
 
+
         for (int i=0; i<halfTwo; i++) {
             qTwo.enqueue(data.peek().data);
             if (data.size()>0) {

@@ -4,15 +4,17 @@ import com.akhil.DataTypes.Queue;
 import com.akhil.DataTypes.Node;
 
 public class Sort {
-    protected static final Queue<Integer> data = new Queue<>();
+    protected static Queue<Integer> data = new Queue<>();
     protected Queue<Integer> sorted = new Queue<>();
     protected Queue<Long> times = new Queue<>();
     private long start;
     private long end;
     
     public void generateData() {
+        data.clear();
         for (int i=0; i<5000; i++) {
-            data.enqueue( (int) (Math.random()*5000) );
+            data.enqueue( (int) (Math.random()*10000) );
+            // data.enqueue( 9-i );
         }
     }
 
