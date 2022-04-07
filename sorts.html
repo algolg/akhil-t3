@@ -110,12 +110,13 @@ Sorted in 180555506
                 </p>
                 <div class="code-container">
                     <code>
-<pre>int lowest = Integer.<color class="blue">MAX_VALUE</color>;
-<color class="red">for</color> (int i : data) {
-    <color class="red">if</color> (i < lowest) {
-        lowest = i;
-    }
-}</pre>
+                        <pre>
+<!--                    -->int lowest = Integer.MAX_VALUE;
+<!--                    -->for (int i : data) {
+<!--                    -->    if (i < lowest) {
+<!--                    -->        lowest = i;
+<!--                    -->    }
+<!--                    -->}</pre>
                     </code>
                 </div>
                 <p class="caption">
@@ -141,12 +142,13 @@ Sorted in 180555506
                 <div style="margin:auto;">
                     <div class="code-container">
                         <code>
-<pre>int sta = 0;
-int mid = data.size()/<color class="blue">2</color>;
-int end = data.size();
-
-int halfOne = mid - sta;
-int halfTwo = end - mid;</pre>
+                            <pre>
+<!--                        -->int sta = 0;
+<!--                        -->int mid = data.size()/2;
+<!--                        -->int end = data.size();
+<!--                        -->
+<!--                        -->int halfOne = mid - sta;
+<!--                        -->int halfTwo = end - mid;</pre>
                         </code>
                     </div>
                     <p class="caption">
@@ -156,21 +158,22 @@ int halfTwo = end - mid;</pre>
                 <div style="margin:auto;">
                     <div class="code-container">
                         <code>
-<pre>Queue&lt;Integer&gt; qOne = <color class="red">new</color> Queue<>();
-Queue&lt;Integer&gt; qTwo = <color class="red">new</color> Queue<>();
-
-<color class="red"r>for</color> (int i=<color class="blue">0</color>; i&lt;halfTwo; i++) {
-    qTwo.<color class="purple">enqueue</color>(data.<color class="purple">peek</color>());
-    if (data.<color class="purple">size</color>()><color class="blue">0</color>) {
-        data.<color class="purple">dequeue</color>();
-    }
-}
-<color class="red"r>for</color> (int i=<color class="blue">0</color>; i&lt;halfOne; i++) {
-    qTwo.<color class="purple">enqueue</color>(data.<color class="purple">peek</color>());
-    if (data.<color class="purple">size</color>()><color class="blue">0</color>) {
-        data.<color class="purple">dequeue</color>();
-    }
-}</pre>
+                            <pre>
+<!--                        -->Queue&lt;Integer&gt; qOne = new Queue<>();
+<!--                        -->Queue&lt;Integer&gt; qTwo = new Queue<>();
+<!--                        -->
+<!--                        -->for (int i=0; i&lt;halfTwo; i++) {
+<!--                        -->    qTwo.enqueue(data.peek());
+<!--                        -->    if (data.size()>0) {
+<!--                        -->        data.dequeue();
+<!--                        -->    }
+<!--                        -->}
+<!--                        -->for (int i=0; i&lt;halfOne; i++) {
+<!--                        -->    qTwo.enqueue(data.peek());
+<!--                        -->    if (data.size()>0) {
+<!--                        -->        data.dequeue();
+<!--                        -->    }
+<!--                        -->}</pre>
                         </code>
                     </div>
                     <p class="caption" style="width:90%;">
@@ -180,12 +183,13 @@ Queue&lt;Integer&gt; qTwo = <color class="red">new</color> Queue<>();
                 <div style="margin:auto;">
                     <div class="code-container">
                         <code>
-<pre><color class="red">if</color> (qOne.<color class="purple">size</color>()><color class="blue">1</color>) {
-    qOne = <color class="purple">Sort</color>(qOne);
-}
-<color class="red">if</color> (qTwo.<color class="purple">size</color>()><color class="blue">1</color>) {
-    qTwo = <color class="purple">Sort</color>(qTwo);
-}</pre>
+                            <pre>
+<!--                        -->if (qOne.size()>1) {
+<!--                        -->    qOne = Sort(qOne);
+<!--                        -->}
+<!--                        -->if (qTwo.size()>1) {
+<!--                        -->    qTwo = Sort(qTwo);
+<!--                        -->}</pre>
                         </code>
                     </div>
                     <p class="caption">
@@ -213,9 +217,10 @@ Queue&lt;Integer&gt; qTwo = <color class="red">new</color> Queue<>();
                 <div style="margin:auto;width:25%;">
                    <div class="code-container">
                        <code>
-<pre>Queue&lt;Integer&gt; temp = <color class="red">new</color> <br>Queue<>();
-Stack&lt;Integer&gt; newData = <color class="red">new</color> <br>Stack<>();
-Queue&lt;Integer&gt; newDataQ = <color class="red">new</color> <br>Queue<>();</pre>
+                           <pre>
+<!--                        -->Queue&lt;Integer&gt; temp = new Queue<>();
+<!--                        -->Stack&lt;Integer&gt; newData = new Stack<>();
+<!--                        -->Queue&lt;Integer&gt; newDataQ = new Queue<>();</pre>
                         </code>
                     </div>
                     <p class="caption" style="width:100%;">
@@ -225,20 +230,21 @@ Queue&lt;Integer&gt; newDataQ = <color class="red">new</color> <br>Queue<>();</p
                 <div style="margin:auto;width:25%;">
                     <div class="code-container">
                         <code>
-<pre>boolean found = <color class="blue">false</color>;
-int previous = <color class="blue">-1</color>;
-<color class="red">for</color> (int i : data) {
-    <color class="red">if</color> (!found) {
-        newData.<color class="purple">push</color>(i);
-    }
-    <color class="red">else</color> {
-        temp.<color class="purple">enqueue</color>(i);
-    }
-    <color class="red">if</color> (i < previous) {
-        found = <color class="blue">true</color>;
-    }
-    previous = i;
-}</pre>
+                            <pre>
+<!--                        -->boolean found = false;
+<!--                        -->int previous = -1;
+<!--                        -->for (int i : data) {
+<!--                        -->    if (!found) {
+<!--                        -->        newData.push(i);
+<!--                        -->    }
+<!--                        -->    else {
+<!--                        -->        temp.enqueue(i);
+<!--                        -->    }
+<!--                        -->    if (i < previous) {
+<!--                        -->        found = true;
+<!--                        -->    }
+<!--                        -->    previous = i;
+<!--                        -->}</pre>
                         </code>
                     </div>
                     <p class="caption" style="width:100%">
@@ -249,17 +255,18 @@ int previous = <color class="blue">-1</color>;
                 <div style="margin:auto;width:25%;">
                     <div class="code-container">
                         <code>
-<pre>int smaller = newData.<color class="purple">peek</color>();
-newData.<color class="purple">pop</color>();
-int bigger = newData.<color class="purple">peek</color>();
-newData.<color class="purple">pop</color>();
-newData.<color class="purple">push</color>(smaller);
-newData.<color class="purple">push</color>(bigger);
-
-<color class="red">while</color> (temp.size()>0) {
-    newData.<color class="purple">push</color>(temp.<color class="purple">peek</color>());
-    temp.dequeue();
-}<br></pre>
+                            <pre>
+<!--                        -->int smaller = newData.peek();
+<!--                        -->newData.pop();
+<!--                        -->int bigger = newData.peek();
+<!--                        -->newData.pop();
+<!--                        -->newData.push(smaller);
+<!--                        -->newData.push(bigger);
+<!--                        -->
+<!--                        -->while (temp.size()>0) {
+<!--                        -->    newData.push(temp.peek());
+<!--                        -->    temp.dequeue();
+<!--                        -->}</pre>
                         </code>
                     </div>
                     <p class="caption" style="width:100%;">

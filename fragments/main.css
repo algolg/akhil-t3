@@ -43,11 +43,12 @@ main {
     background-color: #11161A;
     border-radius: 10px;
     font-size: 15px;
-    padding: 15px;
-    width: fit-content;
+    padding: 15px 30px 15px 30px;
+    max-width: fit-content;
     margin: auto;
     transition: 0.2s ease-in-out;
     line-height: 1.5;
+    overflow: auto;
 }
 .code-container:hover {
     background-color: #0e1525;
