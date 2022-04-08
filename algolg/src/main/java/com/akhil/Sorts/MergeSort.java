@@ -1,11 +1,13 @@
 package com.akhil.Sorts;
 
 import com.akhil.DataTypes.Queue;
+import com.akhil.DataTypes.Node;
 
 public class MergeSort extends Sort {
     
     public Queue<Integer> Sort(Queue<Integer> data) {
         Queue<Integer> sorted = new Queue<>();
+        Node<Integer> i;
 
         int sta = 0;
         int mid = data.size()/2;
@@ -17,18 +19,14 @@ public class MergeSort extends Sort {
         Queue<Integer> qOne = new Queue<>();
         Queue<Integer> qTwo = new Queue<>();
 
-
-        for (int i=0; i<halfTwo; i++) {
-            qTwo.enqueue(data.peek().data);
-            if (data.size()>0) {
-                data.dequeue();
-            }
+        i = data.tail;
+        for (int j=0; j<halfTwo; j++) {
+            qTwo.enqueue(i.data);
+            i = i.next;
         }
-        for (int i=0; i<halfOne; i++) {
-            qOne.enqueue(data.peek().data);
-            if (data.size()>0) {
-                data.dequeue();
-            }
+        for (int j=0; j<halfOne; j++) {
+            qOne.enqueue(i.data);
+            i = i.next;
         }
         // System.out.println(qOne.formattedString());
         // System.out.println(qTwo.formattedString());
@@ -40,34 +38,26 @@ public class MergeSort extends Sort {
             qTwo = Sort(qTwo);
         }
 
-        int i = 0;
-        int j = 0;
         while (qOne.peek() != null && qTwo.peek() != null) {
             if (qOne.peek().data <= qTwo.peek().data) {
                 sorted.enqueue(qOne.peek().data);
                 qOne.dequeue();
-                i++;
             }
             else {
                 sorted.enqueue(qTwo.peek().data);
                 qTwo.dequeue();
-                j++;
             }
         }
 
-        while (i < halfOne) {
-            sorted.enqueue(qOne.peek().data);
-            if (qOne.size()>0) {
-                qOne.dequeue();
-            }
-            i++;
+        i = qOne.tail;
+        while (i != null) {
+            sorted.enqueue(i.data);
+            i = i.next;
         }
-        while (j < halfTwo) {
-            sorted.enqueue(qTwo.peek().data);
-            if (qTwo.size()>0) {
-                qTwo.dequeue();
-            }
-            j++;
+        i = qTwo.tail;
+        while (i != null) {
+            sorted.enqueue(i.data);
+            i = i.next;
         }
 
         // System.out.println(sorted.formattedString());

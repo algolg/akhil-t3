@@ -51,6 +51,7 @@ public class Queue<T> {
     public void clear() {
         this.tail = new Node<T>();
         this.head = new Node<T>();
+        this.length = 0;
     }
 
     public int size() {
