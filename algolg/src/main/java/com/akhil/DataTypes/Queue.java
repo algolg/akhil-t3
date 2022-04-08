@@ -6,7 +6,7 @@ import java.util.Iterator;
 public class Queue<T> {
     public Node<T> tail = new Node<>();
     public Node<T> head = new Node<>();
-    private int length = 0;
+    public int length = 0;
     
     public void enqueue(T data) {
         enqueue(new Node<T>(data));

@@ -6,31 +6,21 @@ import com.akhil.DataTypes.Node;
 public class SelectionSort extends Sort {
 
     public void Sort(Queue<Integer> data) {
-        int lowest = Integer.MAX_VALUE;
+        Node<Integer> lowest = new Node<>(Integer.MAX_VALUE);
         Node<Integer> node = data.tail;
         while (node != null) {
-            if (node.data < lowest) {
-                lowest = node.data;
+            if (node.data != null) {
+                if (node.data < lowest.data) {
+                    lowest = node;
+                }
             }
             node = node.next;
         }
-        sorted.enqueue(lowest);
-        Queue<Integer> newData = new Queue<>();
-        int appeared = 0;
-        node = data.tail;
-        while (node != null) {
-            if (node.data != lowest || appeared != 0) {
-                newData.enqueue(node.data);
-            }
-            else if (node.data == lowest) {
-                appeared++;
-            }
-            node = node.next;
+        sorted.enqueue(lowest.data);
+        lowest.data = null;
+        if (sorted.size() < data.size()) {
+            Sort(data);
         }
-        if (newData.size() > 0) {
-            Sort(newData);
-        }
-
     }
 
     public String toString() {
@@ -38,8 +28,8 @@ public class SelectionSort extends Sort {
         Sort(getData());
         setEndTime();
         times.enqueue(getTimeElapsed());
-        // return(getSort() + " in " + getTimeElapsed());
-        return("Sorted in " + getTimeElapsed() + " ns");
+        return(getSort() + " in " + getTimeElapsed());
+        // return("Sorted in " + getTimeElapsed() + " ns");
     }
 
     public static void main(String[] args) {
