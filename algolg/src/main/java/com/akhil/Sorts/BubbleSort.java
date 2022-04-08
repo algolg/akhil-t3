@@ -4,6 +4,9 @@ import com.akhil.DataTypes.Queue;
 import com.akhil.DataTypes.Node;
 
 public class BubbleSort extends Sort {
+
+    public int swapCount = 0;
+    public int comparisonCount = 0;
     
     public Queue<Integer> Sort(Queue<Integer> data) {
 
@@ -13,7 +16,9 @@ public class BubbleSort extends Sort {
 
             if (node.data < node.prev.data) {
                 data.swap(node, node.prev);
+                swapCount += 1;
             }
+            comparisonCount += 1;
 
             node = node.next;
         }
@@ -41,7 +46,15 @@ public class BubbleSort extends Sort {
         setEndTime();
         times.enqueue(getTimeElapsed());
         // return(getSort() + " in " + getTimeElapsed());
-        return("Sorted in " + getTimeElapsed() + " ns");
+        return("Sorted in " + getTimeElapsed() + " ns, " + comparisonCount + " comparisons, " + swapCount + " swaps");
+    }
+
+    public int getComparisonCount() {
+        return comparisonCount;
+    }
+
+    public int getSwapsCount() {
+        return swapCount;
     }
 
     public static void main(String[] args) {

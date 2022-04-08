@@ -4,6 +4,8 @@ import com.akhil.DataTypes.Queue;
 import com.akhil.DataTypes.Node;
 
 public class MergeSort extends Sort {
+
+    public int comparisonCount = 0;
     
     public Queue<Integer> Sort(Queue<Integer> data) {
         Queue<Integer> sorted = new Queue<>();
@@ -30,6 +32,7 @@ public class MergeSort extends Sort {
         if (qTwo.size()>1) {
             qTwo = Sort(qTwo);
         }
+        comparisonCount += 1;
 
         sorted = Queue.merge(qOne, qTwo);
 
@@ -45,7 +48,15 @@ public class MergeSort extends Sort {
         setEndTime();
         times.enqueue(getTimeElapsed());
         // return(getSort() + " in " + getTimeElapsed());
-        return("Sorted in " + getTimeElapsed() + " ns");
+        return("    Sorted in " + getTimeElapsed() + " ns, " + comparisonCount + " comparisons, 0 swaps");
+    }
+
+    public int getComparisonCount() {
+        return comparisonCount;
+    }
+
+    public int getSwapsCount() {
+        return 0;
     }
 
     public static void main(String[] args) {
