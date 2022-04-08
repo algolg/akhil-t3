@@ -195,23 +195,47 @@ public class Sort {
         MergeSort merge = new MergeSort();
 
         try {
-            File file = new File("");
-            FileWriter fw = new FileWriter(file);
-            BufferedWriter writer = new BufferedWriter(fw);
-            writer.append(",Selection,Bubble,Merge\n");
+            File times = new File("");
+            FileWriter timefw = new FileWriter(times);
+            BufferedWriter timewriter = new BufferedWriter(timefw);
+
+            File swaps = new File("");
+            FileWriter swapfw = new FileWriter(swaps);
+            BufferedWriter swapwriter = new BufferedWriter(swapfw);
+
+            File comps = new File("");
+            FileWriter compfw = new FileWriter(comps);
+            BufferedWriter compwriter = new BufferedWriter(compfw);
+
+            timewriter.append(",Selection,Bubble,Merge\n");
+            swapwriter.append(",Selection,Bubble,Merge\n");
+            compwriter.append(",Selection,Bubble,Merge\n");
             for (int i=10; i<5000; i+=10) {
                 for (int j=0; j<10; j++) {
                     sort.generateData(i);
                     selection.toString();
                     bubble.toString();
                     merge.toString();
-                    writer.append(  i+","
+                    timewriter.append(  i+","
                                     +selection.getTimeElapsed()+","
                                     +bubble.getTimeElapsed()+","
                                     +merge.getTimeElapsed()+"\n"
                     );
+                    swapwriter.append(  i+","
+                                    +selection.getSwapsCount()+","
+                                    +bubble.getSwapsCount()+","
+                                    +merge.getSwapsCount()+"\n"
+                    );
+                    compwriter.append(  i+","
+                                    +selection.getComparisonCount()+","
+                                    +bubble.getComparisonCount()+","
+                                    +merge.getComparisonCount()+"\n"
+                    );
                 }
             }
+            timewriter.close();
+            swapwriter.close();
+            compwriter.close();
         } catch (IOException e) {
             System.out.println(e);
         }
