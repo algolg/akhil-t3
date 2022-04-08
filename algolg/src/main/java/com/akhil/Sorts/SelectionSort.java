@@ -6,6 +6,9 @@ import com.akhil.DataTypes.Queue;
 public class SelectionSort extends Sort {
     private int split = 0;
 
+    public int swapCount = 0;
+    public int comparisonCount = 0;
+
     public Queue<Integer> Sort(Queue<Integer> data) {
         Node<Integer> lowest = new Node<>(Integer.MAX_VALUE);
         Node<Integer> node = data.getNode(split);
@@ -13,7 +16,9 @@ public class SelectionSort extends Sort {
             if (node.data != null) {
                 if (node.data < lowest.data) {
                     lowest = node;
+                    swapCount += 1;
                 }
+                comparisonCount += 1;
             }
             node = node.next;
         }
@@ -33,7 +38,7 @@ public class SelectionSort extends Sort {
         setEndTime();
         times.enqueue(getTimeElapsed());
         // return(getSort() + " in " + getTimeElapsed());
-        return("Sorted in " + getTimeElapsed() + " ns");
+        return("Sorted in " + getTimeElapsed() + " ns, " + comparisonCount + " comparisons, " + swapCount + " swaps");
     }
 
     public static void main(String[] args) {
