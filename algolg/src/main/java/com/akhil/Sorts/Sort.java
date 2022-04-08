@@ -3,6 +3,11 @@ package com.akhil.Sorts;
 import com.akhil.DataTypes.Queue;
 import com.akhil.DataTypes.Node;
 
+import java.io.IOException;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+
 public class Sort {
     protected static Queue<Integer> data = new Queue<>();
     protected Queue<Integer> sorted = new Queue<>();
@@ -102,7 +107,7 @@ public class Sort {
         return sum/((long) newTimes.size());
     }
 
-    public static void main(String[] args) {
+    public static void ok(String[] args) {
         Sort sort = new Sort();
         SelectionSort selection = new SelectionSort();
         BubbleSort bubble = new BubbleSort();
@@ -181,5 +186,34 @@ public class Sort {
         System.out.println("Selection Sort:\t" + selection.averageTimes(selection.getTimes()) + " ns, " + averageComparisons_bubble + " comparisons, " + averageSwaps_bubble + " swaps");
         System.out.println("Bubble Sort:\t"    + bubble.averageTimes(bubble.getTimes())       + " ns, " + averageComparisons_selection + " comparisons, " + averageSwaps_selection + " swaps");
         System.out.println("Merge Sort:\t"     + "    " + merge.averageTimes(merge.getTimes())         + " ns, " + averageComparisons_merge + " comparisons, " + averageSwaps_merge + " swaps");
+    }
+
+    public static void main(String[] args) {
+        Sort sort = new Sort();
+        SelectionSort selection = new SelectionSort();
+        BubbleSort bubble = new BubbleSort();
+        MergeSort merge = new MergeSort();
+
+        try {
+            File file = new File("");
+            FileWriter fw = new FileWriter(file);
+            BufferedWriter writer = new BufferedWriter(fw);
+            writer.append(",Selection,Bubble,Merge\n");
+            for (int i=10; i<5000; i+=10) {
+                for (int j=0; j<10; j++) {
+                    sort.generateData(i);
+                    selection.toString();
+                    bubble.toString();
+                    merge.toString();
+                    writer.append(  i+","
+                                    +selection.getTimeElapsed()+","
+                                    +bubble.getTimeElapsed()+","
+                                    +merge.getTimeElapsed()+"\n"
+                    );
+                }
+            }
+        } catch (IOException e) {
+            System.out.println(e);
+        }
     }
 }
