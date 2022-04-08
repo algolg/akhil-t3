@@ -45,7 +45,7 @@ public class BubbleSort extends Sort {
 
     public static void main(String[] args) {
         BubbleSort sort = new BubbleSort();
-        sort.generateData();
+        sort.generateData(5000);
         System.out.println(sort);
     }
 }

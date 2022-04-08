@@ -10,9 +10,9 @@ public class Sort {
     private long start;
     private long end;
     
-    public void generateData() {
+    public void generateData(int len) {
         data.clear();
-        for (int i=0; i<5000; i++) {
+        for (int i=0; i<len; i++) {
             data.enqueue( (int) (Math.random()*10000) );
             // data.enqueue( 9-i );
         }
@@ -110,7 +110,7 @@ public class Sort {
 
         System.out.println();
         for (int i=0; i<12; i++) {
-            sort.generateData();
+            sort.generateData(5000);
             System.out.println("TRIAL #" + (i+1));
             System.out.println("Selection Sort:\t" + selection);
             System.out.println("Bubble Sort:\t"    + bubble);

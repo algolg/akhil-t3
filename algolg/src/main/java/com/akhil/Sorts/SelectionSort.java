@@ -44,7 +44,7 @@ public class SelectionSort extends Sort {
 
     public static void main(String[] args) {
         SelectionSort sort = new SelectionSort();
-        sort.generateData();
+        sort.generateData(5000);
         System.out.println(sort);
     }
 }

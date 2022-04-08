@@ -86,7 +86,7 @@ public class MergeSort extends Sort {
 
     public static void main(String[] args) {
         MergeSort sort = new MergeSort();
-        sort.generateData();
+        sort.generateData(5000);
         System.out.println(sort);
     }
 }
