@@ -117,27 +117,27 @@ public class Sort {
 
         // Bubble Comparison
         int maximumComparisons_bubble = 0;
-        int minimumComparisons_bubble = 0;
+        int minimumComparisons_bubble = Integer.MAX_VALUE;
         int totalComparisons_bubble = 0;
         // Selection Comparison
         int maximumComparisons_selection = 0;
-        int minimumComparisons_selection = 0;
+        int minimumComparisons_selection = Integer.MAX_VALUE;
         int totalComparisons_selection = 0;
         // Merge Comparison
         int maximumComparisons_merge = 0;
-        int minimumComparisons_merge = 0;
+        int minimumComparisons_merge = Integer.MAX_VALUE;
         int totalComparisons_merge = 0;
         // Bubble Swaps
         int maximumSwaps_bubble = 0;
-        int minimumSwaps_bubble = 0;
+        int minimumSwaps_bubble = Integer.MAX_VALUE;
         int totalSwaps_bubble = 0;
         // Selection Swaps
         int maximumSwaps_selection = 0;
-        int minimumSwaps_selection = 0;
+        int minimumSwaps_selection = Integer.MAX_VALUE;
         int totalSwaps_selection = 0;
         // Merge Swaps
         int maximumSwaps_merge = 0;
-        int minimumSwaps_merge = 0;
+        int minimumSwaps_merge = Integer.MAX_VALUE;
         int totalSwaps_merge = 0;
 
         for (int i=0; i<12; i++) {
@@ -195,22 +195,24 @@ public class Sort {
         MergeSort merge = new MergeSort();
 
         try {
-            File times = new File("");
+            File times = new File("times.csv");
             FileWriter timefw = new FileWriter(times, false);
             BufferedWriter timewriter = new BufferedWriter(timefw);
 
-            File swaps = new File("");
+            File swaps = new File("swaps.csv");
             FileWriter swapfw = new FileWriter(swaps, false);
             BufferedWriter swapwriter = new BufferedWriter(swapfw);
 
-            File comps = new File("");
+            File comps = new File("comps.csv");
             FileWriter compfw = new FileWriter(comps, false);
             BufferedWriter compwriter = new BufferedWriter(compfw);
 
             timewriter.append(",Selection,Bubble,Merge\n");
             swapwriter.append(",Selection,Bubble,Merge\n");
             compwriter.append(",Selection,Bubble,Merge\n");
-            for (int i=10; i<5000; i+=10) {
+            long start = System.nanoTime();
+            for (int i=10; i<=5000; i+=10) {
+                System.out.println(i);
                 for (int j=0; j<10; j++) {
                     sort.generateData(i);
                     selection.toString();
@@ -233,6 +235,7 @@ public class Sort {
                     );
                 }
             }
+            System.out.println("Finished in " + (System.nanoTime()-start)/Math.pow(10.0, 9.0) + " seconds");
             timewriter.close();
             swapwriter.close();
             compwriter.close();
