@@ -196,15 +196,15 @@ public class Sort {
 
         try {
             File times = new File("");
-            FileWriter timefw = new FileWriter(times);
+            FileWriter timefw = new FileWriter(times, false);
             BufferedWriter timewriter = new BufferedWriter(timefw);
 
             File swaps = new File("");
-            FileWriter swapfw = new FileWriter(swaps);
+            FileWriter swapfw = new FileWriter(swaps, false);
             BufferedWriter swapwriter = new BufferedWriter(swapfw);
 
             File comps = new File("");
-            FileWriter compfw = new FileWriter(comps);
+            FileWriter compfw = new FileWriter(comps, false);
             BufferedWriter compwriter = new BufferedWriter(compfw);
 
             timewriter.append(",Selection,Bubble,Merge\n");
