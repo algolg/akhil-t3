@@ -16,9 +16,9 @@ public class BubbleSort extends Sort {
 
             if (node.data < node.prev.data) {
                 data.swap(node, node.prev);
-                swapCount += 1;
+                swapCount++;
             }
-            comparisonCount += 1;
+            comparisonCount++;
 
             node = node.next;
         }

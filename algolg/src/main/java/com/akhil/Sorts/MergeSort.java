@@ -32,7 +32,7 @@ public class MergeSort extends Sort {
         if (qTwo.size()>1) {
             qTwo = Sort(qTwo);
         }
-        comparisonCount += 1;
+        comparisonCount++;
 
         sorted = Queue.merge(qOne, qTwo);
 
