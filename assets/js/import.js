@@ -1,10 +1,14 @@
-<link rel="stylesheet" href="main.css">
+function importNav() {
+  navParent = document.getElementById("navParent");
+  nav = document.createElement("div");
+  nav.innerHTML = `
+<link rel="stylesheet" href="../../fragments/main.css">
 <div id="top" class="rounded-corners box bar">
     <div class="bar-title centered-svg-container">
         <h1 class="centered-svg" style="margin-left:10px;">Welcome to Akhil</h1>
     </div>
     <div class="bar-links">
-        <a class="link top-link main-link" href="./index.html">
+        <a class="link top-link main-link" href="index">
             <div class="centered-svg-container">
                 <div class="centered-svg">
                     <abbr title="Home Page">
@@ -13,7 +17,7 @@
                 </div>
             </div>
         </a>
-        <a class="link top-link main-link" href="./techtalks.html">
+        <a class="link top-link main-link" href="techtalks">
             <div class="centered-svg-container">
                 <div class="centered-svg">
                     <abbr title="Tech Talks">
@@ -22,7 +26,7 @@
                 </div>
             </div>
         </a>
-        <a class="link bottom-link main-link" href="./testplans.html">
+        <a class="link bottom-link main-link" href="testplans">
             <div class="centered-svg-container">
                 <div class="centered-svg">
                     <abbr title="Test Prep">
@@ -31,7 +35,7 @@
                 </div>
             </div>
         </a>
-        <a class="link bottom-link main-link" href="./sorts.html">
+        <a class="link bottom-link main-link" href="sorts">
             <div class="centered-svg-container">
                 <div class="centered-svg">
                     <abbr title="Sorts">
@@ -60,3 +64,6 @@
         </a>
     </div>
 </div>
+  `
+  navParent.appendChild(nav);
+}
