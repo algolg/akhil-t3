@@ -49,6 +49,14 @@ public class BubbleSort extends Sort {
         return("Sorted in " + getTimeElapsed() + " ns, " + comparisonCount + " comparisons, " + swapCount + " swaps");
     }
 
+    public int getComparisonCount() {
+        return comparisonCount;
+    }
+
+    public int getSwapsCount() {
+        return swapCount;
+    }
+
     public static void main(String[] args) {
         BubbleSort sort = new BubbleSort();
         sort.generateData(5000);

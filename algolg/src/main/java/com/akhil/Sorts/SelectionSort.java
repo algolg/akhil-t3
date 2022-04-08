@@ -41,6 +41,14 @@ public class SelectionSort extends Sort {
         return("Sorted in " + getTimeElapsed() + " ns, " + comparisonCount + " comparisons, " + swapCount + " swaps");
     }
 
+    public int getComparisonCount() {
+        return comparisonCount;
+    }
+
+    public int getSwapsCount() {
+        return swapCount;
+    }
+
     public static void main(String[] args) {
         SelectionSort sort = new SelectionSort();
         sort.generateData(5000);

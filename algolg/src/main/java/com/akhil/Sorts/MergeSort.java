@@ -48,7 +48,15 @@ public class MergeSort extends Sort {
         setEndTime();
         times.enqueue(getTimeElapsed());
         // return(getSort() + " in " + getTimeElapsed());
-        return("Sorted in " + getTimeElapsed() + " ns, " + comparisonCount + " comparisons, 0 swaps");
+        return("    Sorted in " + getTimeElapsed() + " ns, " + comparisonCount + " comparisons, 0 swaps");
+    }
+
+    public int getComparisonCount() {
+        return comparisonCount;
+    }
+
+    public int getSwapsCount() {
+        return 0;
     }
 
     public static void main(String[] args) {
