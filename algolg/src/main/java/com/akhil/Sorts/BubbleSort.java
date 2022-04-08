@@ -35,8 +35,9 @@ public class BubbleSort extends Sort {
     }
 
     public String toString() {
+        Queue<Integer> set = data.clone();
         setStartTime();
-        Sorter(getData());
+        Sorter(set);
         setEndTime();
         times.enqueue(getTimeElapsed());
         // return(getSort() + " in " + getTimeElapsed());

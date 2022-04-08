@@ -26,9 +26,10 @@ public class SelectionSort extends Sort {
     }
 
     public String toString() {
+        Queue<Integer> set = data.clone();
         this.split = 0;
         setStartTime();
-        sorted = Sort(getData());
+        sorted = Sort(set);
         setEndTime();
         times.enqueue(getTimeElapsed());
         // return(getSort() + " in " + getTimeElapsed());
@@ -37,7 +38,7 @@ public class SelectionSort extends Sort {
 
     public static void main(String[] args) {
         SelectionSort sort = new SelectionSort();
-        sort.generateData(10);
+        sort.generateData(5000);
         System.out.println(sort);
     }
 }

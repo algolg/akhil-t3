@@ -82,6 +82,16 @@ public class Queue<T> {
         return output;
     }
 
+    public Queue<T> clone() {
+        Queue<T> output = new Queue<>();
+        Node<T> node = this.tail;
+        while (node != null) {
+            output.enqueue(node.data);
+            node = node.next;
+        }
+        return output;
+    }
+
     public static Queue<Integer> merge(Queue<Integer> first, Queue<Integer> second) {
         Queue<Integer> output = new Queue<>();
         Node<Integer> firstNode = first.tail;
