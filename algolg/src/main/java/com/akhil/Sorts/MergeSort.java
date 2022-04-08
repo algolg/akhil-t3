@@ -9,22 +9,15 @@ public class MergeSort extends Sort {
         Queue<Integer> sorted = new Queue<>();
         Node<Integer> i;
 
-        int sta = 0;
-        int mid = data.size()/2;
-        int end = data.size();
-
-        int halfOne = mid - sta;
-        int halfTwo = end - mid;
-
         Queue<Integer> qOne = new Queue<>();
         Queue<Integer> qTwo = new Queue<>();
 
         i = data.tail;
-        for (int j=0; j<halfTwo; j++) {
+        for (int j=0; j<(data.size())/2; j++) {
             qTwo.enqueue(i.data);
             i = i.next;
         }
-        for (int j=0; j<halfOne; j++) {
+        while (i != null) {
             qOne.enqueue(i.data);
             i = i.next;
         }
@@ -38,27 +31,7 @@ public class MergeSort extends Sort {
             qTwo = Sort(qTwo);
         }
 
-        while (qOne.peek() != null && qTwo.peek() != null) {
-            if (qOne.peek().data <= qTwo.peek().data) {
-                sorted.enqueue(qOne.peek().data);
-                qOne.dequeue();
-            }
-            else {
-                sorted.enqueue(qTwo.peek().data);
-                qTwo.dequeue();
-            }
-        }
-
-        i = qOne.tail;
-        while (i != null) {
-            sorted.enqueue(i.data);
-            i = i.next;
-        }
-        i = qTwo.tail;
-        while (i != null) {
-            sorted.enqueue(i.data);
-            i = i.next;
-        }
+        sorted = Queue.merge(qOne, qTwo);
 
         // System.out.println(sorted.formattedString());
 
@@ -76,7 +49,7 @@ public class MergeSort extends Sort {
 
     public static void main(String[] args) {
         MergeSort sort = new MergeSort();
-        sort.generateData(5000);
+        sort.generateData(10);
         System.out.println(sort);
     }
 }

@@ -48,6 +48,20 @@ public class Queue<T> {
         second.data = temp;
     }
 
+    public Node<T> getNode(int index) {
+        Node<T> node = this.tail;
+
+        if (index < 0 || index > length) {
+            throw new IndexOutOfBoundsException();
+        }
+
+        for (int i=0; i<index; i++) {
+            node = node.next;
+        }
+
+        return node;
+    }
+
     public void clear() {
         this.tail = new Node<T>();
         this.head = new Node<T>();
@@ -64,6 +78,32 @@ public class Queue<T> {
         while (node != null) {
             output += node.data + " ";
             node = node.next;
+        }
+        return output;
+    }
+
+    public static Queue<Integer> merge(Queue<Integer> first, Queue<Integer> second) {
+        Queue<Integer> output = new Queue<>();
+        Node<Integer> firstNode = first.tail;
+        Node<Integer> secondNode = second.tail;
+
+        while (firstNode != null && secondNode != null) {
+            if (firstNode.data < secondNode.data) {
+                output.enqueue(firstNode.data);
+                firstNode = firstNode.next;
+            }
+            else {
+                output.enqueue(secondNode.data);
+                secondNode = secondNode.next;
+            }
+        }
+        while (firstNode != null) {
+            output.enqueue(firstNode.data);
+            firstNode = firstNode.next;
+        }
+        while (secondNode != null) {
+            output.enqueue(secondNode.data);
+            secondNode = secondNode.next;
         }
         return output;
     }

@@ -1,41 +1,34 @@
 package com.akhil.Sorts;
 
-import com.akhil.DataTypes.Queue;
 import com.akhil.DataTypes.Node;
+import com.akhil.DataTypes.Queue;
 
 public class SelectionSort extends Sort {
+    private int split = 0;
 
-    public void Sort(Queue<Integer> data) {
-        int lowest = Integer.MAX_VALUE;
-        Node<Integer> node = data.tail;
+    public Queue<Integer> Sort(Queue<Integer> data) {
+        Node<Integer> lowest = new Node<>(Integer.MAX_VALUE);
+        Node<Integer> node = data.getNode(split);
         while (node != null) {
-            if (node.data < lowest) {
-                lowest = node.data;
+            if (node.data != null) {
+                if (node.data < lowest.data) {
+                    lowest = node;
+                }
             }
             node = node.next;
         }
-        sorted.enqueue(lowest);
-        Queue<Integer> newData = new Queue<>();
-        int appeared = 0;
-        node = data.tail;
-        while (node != null) {
-            if (node.data != lowest || appeared != 0) {
-                newData.enqueue(node.data);
-            }
-            else if (node.data == lowest) {
-                appeared++;
-            }
-            node = node.next;
+        data.swap(lowest, data.getNode(split));
+        split++;
+        if (!sortChecker(data)) {
+            Sort(data);
         }
-        if (newData.size() > 0) {
-            Sort(newData);
-        }
-
+        return data;
     }
 
     public String toString() {
+        this.split = 0;
         setStartTime();
-        Sort(getData());
+        sorted = Sort(getData());
         setEndTime();
         times.enqueue(getTimeElapsed());
         // return(getSort() + " in " + getTimeElapsed());
@@ -44,7 +37,7 @@ public class SelectionSort extends Sort {
 
     public static void main(String[] args) {
         SelectionSort sort = new SelectionSort();
-        sort.generateData(5000);
+        sort.generateData(10);
         System.out.println(sort);
     }
 }

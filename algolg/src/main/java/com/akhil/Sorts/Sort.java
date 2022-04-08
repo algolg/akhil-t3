@@ -112,9 +112,9 @@ public class Sort {
         for (int i=0; i<12; i++) {
             sort.generateData(5000);
             System.out.println("TRIAL #" + (i+1));
-            System.out.println("Selection Sort:\t" + selection);
             System.out.println("Bubble Sort:\t"    + bubble);
             System.out.println("Merge Sort:\t"     + merge);
+            System.out.println("Selection Sort:\t" + selection);
             System.out.println();
         }
 
