@@ -40,6 +40,8 @@ public class BubbleSort extends Sort {
     }
 
     public String toString() {
+        swapCount = 0;
+        comparisonCount = 0;
         Queue<Integer> set = data.clone();
         setStartTime();
         Sorter(set);

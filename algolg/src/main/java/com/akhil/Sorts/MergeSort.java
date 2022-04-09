@@ -42,6 +42,7 @@ public class MergeSort extends Sort {
     }
 
     public String toString() {
+        comparisonCount = 0;
         Queue<Integer> set = data.clone();
         setStartTime();
         sorted = Sort(set);
