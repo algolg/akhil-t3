@@ -107,7 +107,7 @@ public class Sort {
         return sum/((long) newTimes.size());
     }
 
-    public static void ok(String[] args) {
+    public static void demo(String[] args) {
         Sort sort = new Sort();
         SelectionSort selection = new SelectionSort();
         BubbleSort bubble = new BubbleSort();
