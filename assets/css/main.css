@@ -39,6 +39,20 @@ a {
 main {
     padding: 10px;
 }
+img {
+    border-radius: 10px;
+}
+button {
+    border-radius: 10px;
+    background-color: #0e1525;
+    color: var(--foreground);
+    border: 2px solid var(--foreground);
+    transition: 0.2s;
+}
+button:hover {
+    background-color: var(--foreground);
+    color: #0e1525;
+}
 .code-container {
     background-color: #11161A;
     border-radius: 10px;
@@ -57,6 +71,9 @@ main {
     display:flex;
     width:75%;
     margin:auto;
+}
+.code-section > div {
+    width: 100%;
 }
 .code-highlight {
     background-color: var(--foreground);

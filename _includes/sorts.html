@@ -22,7 +22,7 @@
                     <p>
                         <ul id="toc-list" class="blue" style="font-size:1vw;">
                             <li><a class="blue blue-hover" href="#intro">Intro</a><br></li>
-                            <li><a class="blue blue-hover" href="#limitations">Limitations</a></li>
+                            <li style="display:none;"><a class="blue blue-hover" href="#limitations">Limitations</a></li>
                             <li><a class="blue blue-hover" href="#explanation">Explanation of Code</a></li>
                             <ul class="blue">
                                 <li><a class="blue blue-hover" href="#selection">Selection Sort</a></li>
@@ -60,35 +60,37 @@
                     which I would run on a <color class="red red-hover">queue</color>, the class for which I made by myself. 
                     My hope is that my implementation will fulfull <color class="yellow yellow-hover">Objective #2</color>.
                 </p>
-                <h1 id="limitations">Limitations</h1>
-                <p class="box rounded-corners post-box">
-                    As I attempted to pursue Objective #2, there were some requirements which I wish to waive.<br>
-                    My implementation of bubble sort was fairly complex (as I explain <a class="blue blue-hover" href="#bubble">later on</a>), 
-                    and as a result, the performance of my algorithm was negatively affected. This made it hard for Java to process 
-                    5000 elements of data for bubble sort. I tried doing so, and I have depicted my results below.
-                </p>
-                <div class="code-container">
-                    <code>
-<pre>Selection Sort:
-Sorted in 180555506
+                <div style="display:none;">
+                    <h1 id="limitations">Limitations</h1>
+                    <p class="box rounded-corners post-box">
+                        As I attempted to pursue Objective #2, there were some requirements which I wish to waive.<br>
+                        My implementation of bubble sort was fairly complex (as I explain <a class="blue blue-hover" href="#bubble">later on</a>), 
+                        and as a result, the performance of my algorithm was negatively affected. This made it hard for Java to process 
+                        5000 elements of data for bubble sort. I tried doing so, and I have depicted my results below.
+                    </p>
+                    <div class="code-container">
+                        <code>
+    <pre>Selection Sort:
+    Sorted in 180555506
 
-^C<color class="code-highlight">%</color>
+    ^C<color class="code-highlight">%</color>
 
-<color class="cyan">akhil-t3</color> on <color class="purple"> main</color> 
-<color class="red">[⇡$!+]</color> took <color class="yellow">24m 30s</color></pre></code>
+    <color class="cyan">akhil-t3</color> on <color class="purple"> main</color> 
+    <color class="red">[⇡$!+]</color> took <color class="yellow">24m 30s</color></pre></code>
+                    </div>
+                    <p class="caption">
+                        The program was set to run selection, then bubble, then merge sort.<br>
+                        As shown, selection sort finished in ~0.18 sec.<br>
+                        After over 24 minutes, bubble sort still wasn't done.
+                    </p>
+                    <p class="box rounded-corners post-box">
+                        This is all to say that <color class="red red-hover">5000 terms was not doable</color> with my implementation, 
+                        especially given how I planned on running each algorithm twelve times. 
+                        And thus, I opted for a more humble <color class="red red-hover">500 terms</color>, which I found can still reveal how 
+                        not all sorting algorithms are made equal.<br>
+                        Other than that, I believe I incorporated all required elements of the assignment.
+                    </p>
                 </div>
-                <p class="caption">
-                    The program was set to run selection, then bubble, then merge sort.<br>
-                    As shown, selection sort finished in ~0.18 sec.<br>
-                    After over 24 minutes, bubble sort still wasn't done.
-                </p>
-                <p class="box rounded-corners post-box">
-                    This is all to say that <color class="red red-hover">5000 terms was not doable</color> with my implementation, 
-                    especially given how I planned on running each algorithm twelve times. 
-                    And thus, I opted for a more humble <color class="red red-hover">500 terms</color>, which I found can still reveal how 
-                    not all sorting algorithms are made equal.<br>
-                    Other than that, I believe I incorporated all required elements of the assignment.
-                </p>
                 <h1 id="explanation">Explanation of Code</h1>
                 <p class="box rounded-corners post-box">
                     Each sorting algorithm is a subclass of the Sort superclass. From this superclass, each algorithm inherits a 
@@ -120,7 +122,7 @@ Sorted in 180555506
                     </code>
                 </div>
                 <p class="caption">
-                    This chunk of code searches through <code class="blue">data</pre></code>, a Queue of Integers, and finds the lowest term.<br>
+                    This chunk of code searches through <code class="blue">data</code>, a Queue of Integers, and finds the lowest term.<br>
                 </p>
                 <p class="box rounded-corners post-box">
                     As one may expect, this algorithm does not scale very well. Until the set is fully sorted, the algorithm searches term-by-term 
@@ -143,36 +145,18 @@ Sorted in 180555506
                     <div class="code-container">
                         <code>
                             <pre>
-<!--                        -->int sta = 0;
-<!--                        -->int mid = data.size()/2;
-<!--                        -->int end = data.size();
-<!--                        -->
-<!--                        -->int halfOne = mid - sta;
-<!--                        -->int halfTwo = end - mid;</pre>
-                        </code>
-                    </div>
-                    <p class="caption">
-                        Variables are initialized. These will be used to split the data set into multiple sets.
-                    </p>
-                </div>
-                <div style="margin:auto;">
-                    <div class="code-container">
-                        <code>
-                            <pre>
+<!--                        -->Node&lt;Integer&gt; i;
 <!--                        -->Queue&lt;Integer&gt; qOne = new Queue<>();
 <!--                        -->Queue&lt;Integer&gt; qTwo = new Queue<>();
 <!--                        -->
-<!--                        -->for (int i=0; i&lt;halfTwo; i++) {
-<!--                        -->    qTwo.enqueue(data.peek());
-<!--                        -->    if (data.size()>0) {
-<!--                        -->        data.dequeue();
-<!--                        -->    }
+<!--                        -->i = data.tail;
+<!--                        -->for (int j=0; j<(data.size())/2; j++) {
+<!--                        -->    qTwo.enqueue(i.data);
+<!--                        -->    i = i.next;
 <!--                        -->}
-<!--                        -->for (int i=0; i&lt;halfOne; i++) {
-<!--                        -->    qTwo.enqueue(data.peek());
-<!--                        -->    if (data.size()>0) {
-<!--                        -->        data.dequeue();
-<!--                        -->    }
+<!--                        -->while (i != null) {
+<!--                        -->    qOne.enqueue(i.data);
+<!--                        -->    i = i.next;
 <!--                        -->}</pre>
                         </code>
                     </div>
@@ -194,6 +178,16 @@ Sorted in 180555506
                     </div>
                     <p class="caption">
                         These Queues are then split further until they only contain one element
+                    </p>
+                </div>
+                <div style="margin:auto;">
+                    <div class="code-container">
+                        <code>
+                            <pre>sorted = Queue.merge(qOne, qTwo);</pre>
+                        </code>
+                    </div>
+                    <p class="caption">
+                        Queue class's "merge" method is run, which compares items in each Queue and merges them in order
                     </p>
                 </div>
             </div>
@@ -282,26 +276,60 @@ Sorted in 180555506
                 </p> 
                 <h1 id="analysis">Analysis and Conclusion</h1>
                 <p class="box rounded-corners post-box">
-                    Upon running the main tester method of the Sort class, twelve tests of each sorting algorithm will be executed and 
-                    times are collected, following which the highest and lowest times of each sorting algorithm are removed, and 
-                    times are averaged. Average times of one test run are shown below.
+                    Upon running the "main" tester method of the "Sort" class, 5000 total tests are run for each sorting algorithm: 
+                    for each of 500 random data sets, ranging in length from 100 to 5000 by increments of 10, ten tests are run. After each 
+                    iteration, times, the number of swaps, and the number of comparisons are collected in CSV files. The graphs depicting 
+                    these CSV files are shown below.
                 </p>
-                <div class="code-container">
-                    <code>
-<pre>AVERAGES (EXCL. MAX AND MIN)
-Selection Sort: 1919297 ns
-Bubble Sort:    1031338857 ns
-Merge Sort:     412588 ns</pre>
-                    </code>
+                <div style="overflow:hidden;">
+                    <img id="graphs-carousel" index="0" style="width:100%;scale:1.005;" src="assets/time.svg">
+                    <div style="display:flex;">
+                        <button class="centered-svg-container" style="width:50%;margin-right:2px;" onclick="nextGraph('backward');">
+                            <div class="centered-svg">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" style="margin:10px;" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+                                </svg>
+                            </div>
+                        </button>
+                        <button class="centered-svg-container" style="width:50%;margin-left:2px;" onclick="nextGraph('forward');">
+                            <div class="centered-svg">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" style="margin:10px;" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                                </svg>
+                            </div>
+                        </button>
+                    </div>
+                    <script>
+                        graphs = ["assets/time.svg", "assets/swaps.svg", "assets/comparisons.svg"];
+                        graphs_carousel = document.getElementById("graphs-carousel");
+                        function nextGraph(direction) {
+                            idx = graphs_carousel.getAttribute("index");
+                            switch (direction) {
+                                case "backward":
+                                    console.log((idx-1)%graphs.length);
+                                    graphs_carousel.setAttribute("src", graphs[mod(idx-1, graphs.length)]);
+                                    graphs_carousel.setAttribute("index", mod(idx-1, graphs.length));
+                                    break;
+                                case "forward":
+                                    graphs_carousel.setAttribute("src", graphs[mod(idx+1, graphs.length)]);
+                                    graphs_carousel.setAttribute("index", mod(idx+1, graphs.length));
+                                    break;
+                            }
+                        }
+                        function mod(a, b) {
+                            return ((a%b)+b)%b;
+                        }
+                    </script>
                 </div>
                 <p class="box rounded-corners post-box">
-                    As shown, Merge Sort has the lowest time, and Bubble Sort by far has the highest time. <br><br>
+                    As shown, Merge Sort by far takes the lowest time to complete, and Selection Sort has the highest time. <br><br>
                     As previously discussed, Merge Sort is the only algorithm with a time complexity of O(n), with the other 
-                    two algorithms having a time complexity of O(n<sup>2</sup>). <br><br>
+                    two algorithms having a time complexity of O(n<sup>2</sup>). This trend is also shown in the graphs, where it 
+                    can be seen that Merge Sort tapers flatlines, similar to a logarithmic graph and unlike the other two graphs. <br><br>
                     Furthermore, the Merge Sort algorithm features few comparisons and few swaps, while the other two algorithms frequently 
                     do one or both. <br><br>
                     It is thus safe to conclude that <color class="red red-hover">Merge Sort is the most efficient</color> of the 
-                    algorithms tested, and <color class="red red-hover">Bubble Sort is the least</color>.
+                    algorithms tested.
                 </p>
                 <p class="box rounded-corners post-box footer">
                     — <a class="blue blue-hover" href="https://github.com/algolg" target="_blank">@algolg</a>
