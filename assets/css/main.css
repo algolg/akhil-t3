@@ -20,7 +20,7 @@
     background-color: #0e1525; 
 }
 .post-box {
-    padding: 20px 30px 20px 30px;
+    padding: 20px 30px 20px 30px !important;
     text-align: justify;
 }
 .rounded-corners {
@@ -95,7 +95,7 @@ button:hover {
 }
 .bar {
     display: grid;
-    grid-template-columns: [start] 50% [middle] 50% [end];
+    grid-template-columns: [start] 50% [middle] 50% [end] !important;
     grid-template-rows: [start] 50% [middle] 50% [end];
 }
 .bar-title {
@@ -263,7 +263,7 @@ color {
         display: none;
     }
     .top-responsive {
-        grid-template-columns: [start] 0% [middle] 100% [end];
+        grid-template-columns: [start] 0% [middle] 100% [end] !important;
     }
     .bar-title-responsive {
         opacity: 0;
