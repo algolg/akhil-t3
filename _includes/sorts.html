@@ -102,7 +102,7 @@
                     Queue for storing times, a method to add times to the <color class="red red-hover">Queue</color>, a 
                     <color class="red red-hover">method</color> to average all times (removing the lowest and highest times), and a 
                     <color class="red red-hover">method</color> to make sure the sorted Queue really is sorted. Along with those, the 
-                    Sort class contains the <code class="yellow">generateData()</pre></code> method, which fills the 
+                Sort class contains the <code class="yellow">generateData()</code> method, which fills the 
                     <color color="red">static</color> data Queue with <a class="blue blue-hover" href="#limitations">500</a> random ints. 
                     I made the data variable static to ensure that it was constant across all of the subclass sorting algorithms.
                 </p>
@@ -199,7 +199,7 @@
             <section class="post">
                 <p class="box rounded-corners post-box">
                     Since Merge Sort's algorithm involves halving a given data set many times, this algorithm has a time complexity of 
-                    <color class="yellow yellow-hover">O(n log(n))</i></color>.
+                    <color class="yellow yellow-hover">O(n log(n))</color>.
                 </p>
                 <h3 id="bubble">Bubble Sort</h3>
                 <p class="box rounded-corners post-box">
@@ -287,7 +287,9 @@
                     these CSV files are shown below.
                 </p>
                 <div style="overflow:hidden;">
-                    <img id="graphs-carousel" index="0" style="width:100%;scale:1.005;" src="assets/time.svg">
+                    <img id="times-graph" index="0" style="width:100%;scale:1.005;" src="assets/time.svg" class="shown">
+                    <img id="swaps-graph" index="1" style="width:100%;scale:1.005;" src="assets/swaps.svg" class="hidden">
+                    <img id="comps-graph" index="2" style="width:100%;scale:1.005;" src="assets/comparisons.svg" class="hidden">
                     <div style="display:flex;">
                         <button class="centered-svg-container" style="width:50%;margin-right:2px;" onclick="nextGraph('backward');">
                             <div class="centered-svg">
@@ -305,19 +307,28 @@
                         </button>
                     </div>
                     <script>
-                        graphs = ["assets/time.svg", "assets/swaps.svg", "assets/comparisons.svg"];
-                        graphs_carousel = document.getElementById("graphs-carousel");
+                        graphs = ["times-graph", "swaps-graph", "comps-graph"];
                         function nextGraph(direction) {
-                            idx = graphs_carousel.getAttribute("index");
+                            shown = document.getElementsByClassName("shown")[0];
+                            idx = shown.getAttribute("index");
                             switch (direction) {
                                 case "backward":
-                                    console.log((idx-1)%graphs.length);
-                                    graphs_carousel.setAttribute("src", graphs[mod(idx-1, graphs.length)]);
-                                    graphs_carousel.setAttribute("index", mod(idx-1, graphs.length));
+                                    console.log( graphs[mod(idx-1), graphs.length] );
+                                    next = document.getElementById( graphs[mod(idx-1, graphs.length)] );
+                                    shown.classList.toggle("hidden");
+                                    shown.classList.toggle("shown");
+                                    next.classList.toggle("hidden");
+                                    next.classList.toggle("shown");
                                     break;
                                 case "forward":
-                                    graphs_carousel.setAttribute("src", graphs[mod(idx+1, graphs.length)]);
-                                    graphs_carousel.setAttribute("index", mod(idx+1, graphs.length));
+                                    console.log(idx);
+                                    console.log( mod(idx+1, graphs.length) );
+                                    console.log( graphs[mod(idx+1), graphs.length] );
+                                    next = document.getElementById( graphs[mod(idx+1, graphs.length)] );
+                                    shown.classList.toggle("hidden");
+                                    shown.classList.toggle("shown");
+                                    next.classList.toggle("hidden");
+                                    next.classList.toggle("shown");
                                     break;
                             }
                         }
@@ -325,6 +336,11 @@
                             return ((a%b)+b)%b;
                         }
                     </script>
+                    <style>
+                        .hidden {
+                            display: none;
+                        }
+                    </style>
                 </div>
                 <p class="box rounded-corners post-box">
                     As shown, Merge Sort by far takes the lowest time to complete, and Selection Sort has the highest time. <br><br>
