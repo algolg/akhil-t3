@@ -22,7 +22,7 @@
                     <p>
                         <ul id="toc-list" class="blue" style="font-size:1vw;">
                             <li><a class="blue blue-hover" href="#intro">Intro</a><br></li>
-                            <li style="display:none;"><a class="blue blue-hover" href="#limitations">Limitations</a></li>
+                            <li><a class="blue blue-hover" href="#challenges">Challenges</a></li>
                             <li><a class="blue blue-hover" href="#explanation">Explanation of Code</a></li>
                             <ul class="blue">
                                 <li><a class="blue blue-hover" href="#selection">Selection Sort</a></li>
@@ -60,11 +60,11 @@
                     which I would run on a <color class="red red-hover">queue</color>, the class for which I made by myself. 
                     My hope is that my implementation will fulfull <color class="yellow yellow-hover">Objective #2</color>.
                 </p>
-                <div style="display:none;">
-                    <h1 id="limitations">Limitations</h1>
+                <div>
+                    <h1 id="challenges">challenges</h1>
                     <p class="box rounded-corners post-box">
-                        As I attempted to pursue Objective #2, there were some requirements which I wish to waive.<br>
-                        My implementation of bubble sort was fairly complex (as I explain <a class="blue blue-hover" href="#bubble">later on</a>), 
+                        As I attempted to pursue Objective #2, there were some issues I ran into.<br>
+                        My old implementation of Bubble Sort was fairly complex, 
                         and as a result, the performance of my algorithm was negatively affected. This made it hard for Java to process 
                         5000 elements of data for bubble sort. I tried doing so, and I have depicted my results below.
                     </p>
@@ -84,11 +84,11 @@
                         After over 24 minutes, bubble sort still wasn't done.
                     </p>
                     <p class="box rounded-corners post-box">
-                        This is all to say that <color class="red red-hover">5000 terms was not doable</color> with my implementation, 
-                        especially given how I planned on running each algorithm twelve times. 
-                        And thus, I opted for a more humble <color class="red red-hover">500 terms</color>, which I found can still reveal how 
+                        This is all to say that <color class="red red-hover">5000 terms was not doable</color> with my old implementation, 
+                        and thus, I opted for a more humble <color class="red red-hover">500 terms</color>, which I found can still reveal how 
                         not all sorting algorithms are made equal.<br>
-                        Other than that, I believe I incorporated all required elements of the assignment.
+                        Eventually, I realized that the root of my problem was a lack of a proper swap method; after implementing this, my 
+                        code was saved.
                     </p>
                 </div>
                 <h1 id="explanation">Explanation of Code</h1>
