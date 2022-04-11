@@ -5,32 +5,11 @@
     --foreground: #c7d6ff;
 }
 
-.centered-svg-container {
-    display: flex;
-    align-items: center;
-    height: 100%;
-    margin: auto;
-}
-.centered-svg {
-    margin: 0 auto;
-    display: block;
-}
-.box {
-    padding: 10px;
-    background-color: #0e1525; 
-}
-.post-box {
-    padding: 20px 30px 20px 30px !important;
-    text-align: justify;
-}
-.rounded-corners {
-    
-    border-radius: 10px;
-}
 html {
     color: var(--foreground);
     font-family: 'Fredoka', sans-serif;
     background-color: var(--background);
+    scroll-behavior: smooth;
 }
 a {
     color: #c7d6ff;
@@ -52,6 +31,28 @@ button {
 button:hover {
     background-color: var(--foreground);
     color: #0e1525;
+}
+.centered-svg-container {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin: auto;
+}
+.centered-svg {
+    margin: 0 auto;
+    display: block;
+}
+.box {
+    padding: 10px;
+    background-color: #0e1525; 
+}
+.post-box {
+    padding: 20px 30px 20px 30px !important;
+    text-align: justify;
+}
+.rounded-corners {
+    
+    border-radius: 10px;
 }
 .code-container {
     background-color: #11161A;
