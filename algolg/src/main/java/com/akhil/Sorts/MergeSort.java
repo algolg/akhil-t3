@@ -32,16 +32,43 @@ public class MergeSort extends Sort {
         if (qTwo.size()>1) {
             qTwo = Sort(qTwo);
         }
-        comparisonCount += 1;
 
-        sorted = Queue.merge(qOne, qTwo);
+        sorted = merge(qOne, qTwo);
 
         // System.out.println(sorted.formattedString());
 
         return sorted;
     }
 
+    public Queue<Integer> merge(Queue<Integer> first, Queue<Integer> second) {
+        Queue<Integer> output = new Queue<>();
+        Node<Integer> firstNode = first.tail;
+        Node<Integer> secondNode = second.tail;
+
+        while (firstNode != null && secondNode != null) {
+            comparisonCount++;
+            if (firstNode.data < secondNode.data) {
+                output.enqueue(firstNode.data);
+                firstNode = firstNode.next;
+            }
+            else {
+                output.enqueue(secondNode.data);
+                secondNode = secondNode.next;
+            }
+        }
+        while (firstNode != null) {
+            output.enqueue(firstNode.data);
+            firstNode = firstNode.next;
+        }
+        while (secondNode != null) {
+            output.enqueue(secondNode.data);
+            secondNode = secondNode.next;
+        }
+        return output;
+    }
+
     public String toString() {
+        comparisonCount = 0;
         Queue<Integer> set = data.clone();
         setStartTime();
         sorted = Sort(set);

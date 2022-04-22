@@ -49,14 +49,23 @@ public class Queue<T> {
     }
 
     public Node<T> getNode(int index) {
-        Node<T> node = this.tail;
-
-        if (index < 0 || index > length) {
+        if (index < 0 || index >= length) {
             throw new IndexOutOfBoundsException();
         }
 
-        for (int i=0; i<index; i++) {
-            node = node.next;
+        Node<T> node = new Node<>();
+
+        if (index <= length/2) {
+            node = this.tail;
+            for (int i=0; i<index; i++) {
+                node = node.next;
+            }
+        }
+        else {
+            node = this.head;
+            for (int i=length-1; i>index; i--) {
+                node = node.prev;
+            }
         }
 
         return node;
@@ -131,13 +140,12 @@ public class Queue<T> {
 
     public static void main(String[] args) {
         Queue<Integer> queue = new Queue<>();
+        queue.enqueue(new Node<Integer>(0));
         queue.enqueue(new Node<Integer>(1));
         queue.enqueue(new Node<Integer>(2));
         queue.enqueue(new Node<Integer>(3));
         queue.enqueue(new Node<Integer>(4));
-        queue.enqueue(new Node<Integer>(5));
         System.out.println(queue.formattedString());
-        queue.swap(queue.tail, queue.tail.next);
-        System.out.println(queue.formattedString());
+        System.out.println(queue.getNode(4).data);
     }
 }

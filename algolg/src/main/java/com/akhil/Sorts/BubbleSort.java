@@ -16,9 +16,9 @@ public class BubbleSort extends Sort {
 
             if (node.data < node.prev.data) {
                 data.swap(node, node.prev);
-                swapCount += 1;
+                swapCount++;
             }
-            comparisonCount += 1;
+            comparisonCount++;
 
             node = node.next;
         }
@@ -40,6 +40,8 @@ public class BubbleSort extends Sort {
     }
 
     public String toString() {
+        swapCount = 0;
+        comparisonCount = 0;
         Queue<Integer> set = data.clone();
         setStartTime();
         Sorter(set);

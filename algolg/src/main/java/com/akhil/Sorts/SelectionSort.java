@@ -16,9 +16,9 @@ public class SelectionSort extends Sort {
             if (node.data != null) {
                 if (node.data < lowest.data) {
                     lowest = node;
-                    swapCount += 1;
+                    swapCount++;
                 }
-                comparisonCount += 1;
+                comparisonCount++;
             }
             node = node.next;
         }
@@ -31,6 +31,8 @@ public class SelectionSort extends Sort {
     }
 
     public String toString() {
+        swapCount = 0;
+        comparisonCount = 0;
         Queue<Integer> set = data.clone();
         this.split = 0;
         setStartTime();
