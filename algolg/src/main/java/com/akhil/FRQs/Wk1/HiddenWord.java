@@ -1,6 +1,7 @@
 package com.akhil.FRQs.Wk1;
 
 import java.util.Scanner;
+import java.io.Console;
 
 public class HiddenWord {
     public static final String YELLOW = "\u001B[33m";
@@ -38,9 +39,8 @@ public class HiddenWord {
     }
 
     public static void main(String[] args) {
-        Scanner a = new Scanner(System.in);
-        System.out.print("Input a word: ");
-        String word = a.nextLine();
+        Console a = System.console();
+        String word = new String(a.readPassword("Input a word: "));
         String highlighted_word = "";
         for (char ch : word.toCharArray()) {
             highlighted_word += HiddenWord.GREEN + ch + HiddenWord.RESET;

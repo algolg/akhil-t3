@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 import com.akhil.Sorts.Sort;
+import com.akhil.FRQs.FRQ;
 
 public class Menu {
     String title;
@@ -40,6 +41,7 @@ public class Menu {
             menu.put(3, new Menu("IntByReference", () -> IntByReference.main(null) ) );
             menu.put(4, new Menu("Queue", () -> Q.menu(null) ) );
             menu.put(5, new Menu("Sorts", () -> Sort.demo(null) ) );
+            menu.put(6, new Menu("FRQs", () -> FRQ.menu(null)));
 
             System.out.println("Menu:");
             for (Map.Entry<Integer, Menu> pair : menu.entrySet()) {

@@ -25,4 +25,17 @@ public class DiverseArray {
         return true;
     }
 
+    public static void main(String[] args) {
+        int arr[][] = new int[5][5];
+        System.out.println("\nGenerated the following array (sums shown on right)");
+        for (int[] i : arr) {
+            for (int j=0; j < i.length; j++) {
+                i[j] = (int) (10 * Math.random());
+                System.out.print(i[j] + " ");
+            }
+            System.out.println("\t" + DiverseArray.arraySum(i));
+        }
+        System.out.println("The array is " + (DiverseArray.isDiverse(arr) ? "" : "not ") + "diverse");
+    }
+
 }
