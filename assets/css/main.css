@@ -128,8 +128,8 @@ button:hover {
     color: var(--foreground);
     background-color: #1c2333;
     border-radius: 10px;
-    padding: 15px 10px 15px 10px;
-    margin-right: 10px;
+    padding: 1.5% 1% 1.5% 1%;
+    margin-right: 1%;
     margin-left: auto;
     transition: 0.2s;
     float: right;
@@ -141,13 +141,25 @@ button:hover {
     color: var(--background);
     background-color: var(--foreground);
 }
+.parent-link:hover .sub-link {
+    opacity: 1;
+    pointer-events: visible;
+}
 #dropdown-link {
     display: none;
 }
 #last-link {
     margin-right: 0;
 }
-
+.sub-link {
+    color: var(--background);
+    background-color: var(--foreground);
+    position: absolute;
+    width: 10%;
+    transform: translateX(calc(-15%));
+    opacity: 0;
+    pointer-events: none;
+}
 /* TEXT */
 p {
     font-size: 20px;
