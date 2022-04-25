@@ -3,10 +3,9 @@ package com.akhil.FRQs.Wk1;
 import java.util.Scanner;
 import java.io.Console;
 
+import com.akhil.Constants;
+
 public class HiddenWord {
-    public static final String YELLOW = "\u001B[33m";
-    public static final String GREEN = "\u001B[32m";
-    public static final String RESET = "\u001B[0m";
 
     private String word;
 
@@ -20,13 +19,13 @@ public class HiddenWord {
         for (int i=0; i < guess.length(); i++) {
             boolean added = false;
             if (guess.charAt(i) == this.word.charAt(i)) {
-                output += GREEN + String.valueOf(guess.charAt(i)) + RESET; //review how to compare chars
+                output += Constants.ANSI_GREEN + String.valueOf(guess.charAt(i)) + Constants.ANSI_RESET; //review how to compare chars
                 added = true;
             }
             if (!added) {
                 for (int j=0; j < guess.length(); j++) {
                     if (guess.charAt(i) == this.word.charAt(j)) {
-                        output += YELLOW + "+" + RESET;
+                        output += Constants.ANSI_YELLOW + "+" + Constants.ANSI_RESET;
                         added = true;
                         break;
                     }
@@ -43,7 +42,7 @@ public class HiddenWord {
         String word = new String(a.readPassword("Input a word: "));
         String highlighted_word = "";
         for (char ch : word.toCharArray()) {
-            highlighted_word += HiddenWord.GREEN + ch + HiddenWord.RESET;
+            highlighted_word += Constants.ANSI_GREEN + ch + Constants.ANSI_RESET;
         }
 
         HiddenWord game = new HiddenWord(word);
