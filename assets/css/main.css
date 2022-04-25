@@ -12,7 +12,7 @@ html {
     scroll-behavior: smooth;
 }
 a {
-    color: #c7d6ff;
+    color: inherit;
     transition: 0.2s;
 }
 main {
@@ -102,8 +102,6 @@ button:hover {
 .bar-title {
     grid-column-start: start;
     grid-column-end: middle;
-    grid-row-start: start;
-    grid-row-end: end;
     margin-left: 0px;
     overflow: hidden;
     transition: 0.2s;
@@ -111,17 +109,7 @@ button:hover {
 .bar-links {
     grid-column-start: middle;
     grid-column-end: end;
-    grid-row-start: start;
-    grid-row-end: end;
     display: flex;
-}
-.top-link {
-    grid-row-start: start;
-    grid-row-end: middle;
-}
-.bottom-link {
-    grid-row-start: middle;
-    grid-row-end: middle;
 }
 .link {
     width:25%;
@@ -141,6 +129,9 @@ button:hover {
     color: var(--background);
     background-color: var(--foreground);
 }
+.link > a {
+    text-decoration: none;
+}
 .parent-link:hover .sub-link {
     opacity: 1;
     pointer-events: visible;
@@ -159,6 +150,9 @@ button:hover {
     transform: translateX(calc(-15%));
     opacity: 0;
     pointer-events: none;
+}
+.sub-link::before {
+    margin-top:1%;
 }
 /* TEXT */
 p {

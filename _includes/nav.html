@@ -1,9 +1,11 @@
 <div id="top" class="rounded-corners box bar">
+  <link rel="stylesheet" href="/Users/akhilguntur/Documents/GitHub/akhil-t3/assets/css/main.css">
+  <script src="/Users/akhilguntur/Documents/GitHub/akhil-t3/assets/js/main.js"></script>
     <div class="bar-title centered-svg-container">
         <h1 class="centered-svg" style="margin-left:10px;">Welcome to Akhil</h1>
     </div>
     <div class="bar-links">
-        <a class="link top-link main-link" href="index">
+        <a class="link main-link" href="index">
             <div class="centered-svg-container">
                 <div class="centered-svg">
                     <abbr title="Home Page">
@@ -12,7 +14,7 @@
                 </div>
             </div>
         </a>
-        <a class="link top-link main-link" href="techtalks">
+        <a class="link main-link" href="techtalks">
             <div class="centered-svg-container">
                 <div class="centered-svg">
                     <abbr title="Tech Talks">
@@ -21,19 +23,23 @@
                 </div>
             </div>
         </a>
-        <a class="link bottom-link main-link parent-link" id="testplans-btn" href="testplans">
-            <div class="centered-svg-container">
-                <div class="centered-svg">
-                    <abbr title="Test Prep">
-                        <h5>Test Prep</h5>
-                    </abbr>
+        <div class="link main-link parent-link" id="testplans-btn">
+            <a href="testplans">
+                <div class="centered-svg-container">
+                    <div class="centered-svg">
+                        <abbr title="Test Prep">
+                            <h5>Test Prep</h5>
+                        </abbr>
+                    </div>
                 </div>
+            </a>
+            <div class="link sub-link">
+                <a href="mcq-corrections">
+                    MCQ Corrections
+                </a>
             </div>
-            <!--<div class="link sub-link">
-                MCQ Corrections
-            </div>-->
-        </a>
-        <a class="link bottom-link main-link" href="sorts">
+        </div>
+        <a class="link main-link" href="sorts">
             <div class="centered-svg-container">
                 <div class="centered-svg">
                     <abbr title="Sorts">
@@ -42,7 +48,7 @@
                 </div>
             </div>
         </a>
-        <a id="last-link" class="link bottom-link main-link" href="https://github.com/algolg" alt="GitHub Profile" target="_blank" rel="noopener noreferrer">
+        <a id="last-link" class="link main-link" href="https://github.com/algolg" alt="GitHub Profile" target="_blank" rel="noopener noreferrer">
             <div class="centered-svg-container">
                 <div class="centered-svg">
                     <abbr title="GitHub Profile">
@@ -51,7 +57,7 @@
                 </div>
             </div>
         </a>
-        <a id="dropdown-link" class="link bottom-link" onclick="toggleResponsive()">
+        <a id="dropdown-link" class="link" onclick="toggleResponsive()">
             <div class="centered-svg-container">
                 <div class="centered-svg">
                     <svg xmlns="http://www.w3.org/2000/svg" style="font-size:0;" width="50px" height="50px" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
