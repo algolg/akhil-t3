@@ -11,7 +11,74 @@
                     Akhil Guntur - April 24, 2022<br>
                 </p>
                 <p class="box rounded-corners post-box">
-                    
+                    I got 34/39 questions on the multiple choice section correct.<br>
+                    <img src="assets/2015-mcq-score.png">
+                </p>
+                <h1>Question 23</h1>
+                <p class="box rounded-corners post-box">
+                    <img src="https://assets.learnosity.com/organisations/537/media.academicmerit.com/65c604f06409ab0b0641367b9142f98f/original.jpg"><br>
+                    Assume that array arr has been defined and initialized with the values {5, 4, 3, 2, 1}. What are the values in array arr after two passes of the for loop (i.e., when j = 2 at the point indicated by / * end of for loop * / ) ?
+                </p>
+                <p class="box rounded-corners post-box">
+                    Insertion sort works by taking an element and moving it until it is behind an element that is greater than it.<br>
+                    By the end of the first iteration, the element with an index of 1 (4) is moved to index 0 -> {4, 5, 3, 2, 1}<br>
+                    By the end of the second iteration, the element with an idex of 2 (3) is moved to the index of 0 -> {3, 4, 5, 2, 1}<br>
+                    At this point, j = 2 at the spot indicated, therefore the answer is <color class="red red-hover">{3, 4, 5, 2, 1}</color>
+                </p>
+                <h1>Question 26</h1>
+                <p class="box rounded-corners post-box">
+                    <img src="https://assets.learnosity.com/organisations/537/media.academicmerit.com/b95c26a3cc8f679129c850612502ca36/original.jpg"><br>
+                    What is printed as a result of the call start() ?
+                </p>
+                <p class="box rounded-corners post-box">
+                    Within the method <code>start()</code>, the method <code>changeIt()</code> is called. <code>changeIt()</code> is supposed to 
+                    modify inputted variables, but it effectively does nothing since, when variables are passed into Java methods, copies are passed, 
+                    not references to their location in memory. Thus, no change is made, and <color class="red red-hover">1 2 3 4 5 6 blackboard</color> is 
+                    printed out, making that the correct answer.
+                </p>
+                <h1>Question 31</h1>
+                <p class="box rounded-corners post-box">
+                    <img src="https://assets.learnosity.com/organisations/537/media.academicmerit.com/fa0b0169aed6a075fbaf41e73c450c80/original.jpg"><br>
+                    Which of the following represents board after this code segment is executed?
+                </p>
+                <p class="box rounded-corners post-box">
+                    The nested for loop fills the entire array with O's.<br>
+                    The next for loop starts at cells with odd numbered rows and columns of 0 and moves 1 cell to the top (<code>row--</code> moves up) 
+                    and right (<code>col++</code> moves to the right), filling each of these cells with X's.<br>
+                    So, the resulting array should have <color class="red red-hover">diagonal lines going up and to the right</color>; these 
+                    lines should <color class="red red-hover">start at [1][0] and [3][0]</color>.<br>
+                    The answer is thus:<br>
+                    <img src="https://assets.learnosity.com/organisations/537/media.academicmerit.com/ff48e705a7fcb096c907b8bca247ddbf/original.jpg">
+                </p>
+                <h1>Question 36</h1>
+                <p class="box rounded-corners post-box">
+                    <img src="https://assets.learnosity.com/organisations/537/media.academicmerit.com/c491394df4b2ea611a55d9888a4fd4f3/original.jpg"><br>
+                    Suppose the binarySearch method is called with an array containing 2,000 elements sorted in increasing order. What is the maximum number 
+                    of times that the statement indicated by / * Calculate midpoint * / could execute?
+                </p>
+                <p class="box rounded-corners post-box">
+                    The binary search algorithm repeatedly splits a given array in halves until the number it searches for is in the middle 
+                    of one of the halves. At its slowest, the passed array will be split into halves until the array is at a length of 1. To 
+                    find the maximum number of iterations, we would need to find how many times the array can be split until it cannot be 
+                    split any further. Since the array is being halves, taking the log of the size of the array with a base of 2 would give 
+                    us our answer.<br>
+                    log<sub>2</sub>(2000) is approximately 11 (2<sup>11</sup> = 2048), so <color class="red">11</color> is our answer.
+                </p>
+                <h1>Question 39</h1>
+                <p class="box rounded-corners post-box">
+                    <img src="https://assets.learnosity.com/organisations/537/media.academicmerit.com/852973c486bda584c1d8a15a0234bd6b/original.jpg"><br>
+                    What is printed as a result of executing the code segment?
+                </p>
+                <p class="box rounded-corners post-box">
+                    1. "Alex", "Bob", and "Carl" are added to <code>students</code><br>
+                    2. The <code>set()</code> method returns the current value at a given index, so "Alex Bob Carl" is printed out (with a 
+                    line break) while all elements of the <code>ArrayList</code> are replaced with "Alex"<br>
+                    3. All elements of the <code>ArrayList</code> are printed out -> "Alex Alex Alex" is printed out (with a line break)<br>
+                    Therefore, the output is:<br>
+                    <color class="red">Alex Bob Carl<br>Alex Alex Alex</color>
+                </p>
+                <p class="box rounded-corners post-box footer">
+                    — <a class="blue blue-hover" href="https://github.com/algolg" target="_blank">@algolg</a>
                 </p>
             </section>
         </div>
