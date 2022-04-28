@@ -255,8 +255,40 @@ color {
     .code-section > div {
         width: 100% !important;
     }
+    .bar {
+        display: block;
+    }
     .bar-title {
         font-size: 25px;
+    }
+    .bar-links {
+        width: 100%;
+        display: block;
+        font-size: 50px;
+        float: none;
+    }
+    .gap {
+        display: none;
+    }
+    .sub-link {
+        width: 100%;
+        position: relative;
+        display: none;
+        float: none;
+    }
+    .sub-link > a {
+        width: 100%;
+        transform: none;
+        filter: brightness(1.1);
+    }
+    .sub-link > a:hover {
+        transform: none !important;
+    }
+    .parent-link:hover .sub-link {
+        display: block;
+    }
+    .parent-link > a > div > div > abbr > h5::after {
+        margin-top: 25px;
     }
 
     #toc {
@@ -283,6 +315,8 @@ color {
     #dropdown-link {
         display: inherit;
         margin-right: 0px;
+        margin-top: 0px;
+        width: fit-content;
     }
     #last-link {
         margin-right: 10px;
@@ -291,20 +325,14 @@ color {
         display: none;
     }
     .link {
-        font-size: 40px;
+        width: 100%;
+        float: none;
+        box-sizing: border-box;
+        margin-top: 10px;
     }
     /* TOGGLE */
-    .bar-title-display {
-        display: none;
-    }
-    .top-responsive {
-        grid-template-columns: [start] 0% [middle] 100% [end] !important;
-    }
-    .bar-title-responsive {
-        opacity: 0;
-    }
     .main-link-responsive {
-        display: inherit;
+        display: inline-block;
     }
 
     /* CODE */
