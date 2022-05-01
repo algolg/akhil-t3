@@ -6,6 +6,7 @@ import java.util.HashMap;
 
 import com.akhil.Menu;
 import com.akhil.FRQs.Wk1.*;
+import com.akhil.FRQs.Wk2.*;
 
 public class FRQ {
     
@@ -19,6 +20,8 @@ public class FRQ {
         menu.put(2, new Menu("HiddenWord", () -> HiddenWord.main(null) ) );
         menu.put(3, new Menu("SparseArray", () -> SparseArray.main(null) ) );
         menu.put(4, new Menu("Range", () -> Range.main(null) ) );
+        menu.put(5, new Menu("GameSpinner", () -> GameSpinner.main(null) ) );
+        menu.put(6, new Menu("HailStone", () -> HailStone.main(null) ) );
 
         System.out.println("Menu:");
         for (Map.Entry<Integer, Menu> pair : menu.entrySet()) {
