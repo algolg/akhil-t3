@@ -1,0 +1,101 @@
+
+<html>
+    <main>
+        <head>
+            <title>MCQ Corrections</title>
+        </head>
+        <div>
+            <section class="post">
+                <h1 class="post-title">MCQ Corrections</h1>
+                <p class="caption" style="line-height:1.2">
+                    Akhil Guntur - May 1, 2022<br>
+                </p>
+                <p class="box rounded-corners post-box">
+                    I got 33/40 questions on the multiple choice section correct.<br>
+                    <img src="assets/2020-mcq-1-score.png">
+                </p>
+                <h1>Question 6</h1>
+                <p class="box rounded-corners post-box">
+                    <img src="assets/2020-mc-questions/2020-q6.png">
+                </p>
+                <p class="box rounded-corners post-box">
+                    Option (I) casts int 2 to the double 2.0. Upon dividing by 4, the result will be 0.5, so 3.5 is produced<br>
+                    Option (II) casts int (2 / 4) to the double 0.0. The result will thus be 3.0, not 3.5<br>
+                    Option (III) casts int (2 / 4 + 3) to the double 3.0. The result will thus be 3.0, not 3.5<br>
+                    Option (I) is the only option that produces 3.5, so <color class="red red-hover">A</color> is our answer.
+                </p>
+                <h1>Question 8</h1>
+                <p class="box rounded-corners post-box">
+                    <img src="assets/2020-mc-questions/2020-q8.png">
+                </p>
+                <p class="box rounded-corners post-box">
+                    The types double and int can be casted to each other, so this is not an issue.<br>
+                    The issue is that in lines 14 and 15, n1 and n2 are being referenced even though they 
+                    do not exist as instance or class variables to the incrementPoints method. This will 
+                    cause a runtime error.<br>
+                    Thus, <color class="red red-hover">lines 14 and 15</color> will cause issues.
+                </p>
+                <h1>Question 11</h1>
+                <p class="box rounded-corners post-box">
+                    Which of the following code segments produces the output "987654321" ?
+                </p>
+                <p class="box rounded-corners post-box">
+                    In my selected code segment (belox), the while loop continues when num = 1, which means that 
+                    the number printed will go to 0.<br>
+                    <img src="assets/2020-mc-questions/2020-q11-1.png"><br>
+                    To fix this issue, the &gt;= in the while loop header should be changed to &gt;, ensuring that the 
+                    loop stops after num = 2, making 1 the last number printed.<br>
+                    <img src="assets/2020-mc-questions/2020-q11-2.png">
+                </p>
+                <h1>Question 12</h1>
+                <p class="box rounded-corners post-box">
+                    <img src="assets/2020-mc-questions/2020-q12.png" style="width:100%;">
+                </p>
+                <p class="box roundedd-corners post-box">
+                    Objects must first be initialized in order for the <code>equals()</code> method to be usable.<br>
+                    Thus, Option (I) is invalid, and Option (II) is the only valid answer.
+                </p>
+                <h1>Question 28</h1>
+                <p class="box rounded-corners post-box">
+                    <img src="assets/2020-mc-questions/2020-q28.png">
+                </p>
+                <p class="box rounded-corners post-box">
+                    x is initialized with a value of 2<br>
+                    <color class="red red-hover">--- While loop starts ---</color><br>
+                    <color class="blue blue-hover">- Iteration 0</color><br>
+                    The value of a is changed to "si the song"<br>
+                    The value of x is changed to 9<br>
+                    <color class="blue blue-hover">- Iteration 1</color><br>
+                    The value of a is changed to "si the so" because the substring method can go up to the string's length<br>
+                    &emsp;&emsp;The substring method should be able to be called from 0 to the string's length because 
+                    it stops just before the last index<br>
+                    The value of x is changed to -1 because the string "ng" is no longer in a<br>
+                    <color class="red red-hover">--- While loop ends ---</color><br>
+                    a, with a value of "si the so" is returned
+                </p>
+                <h1>Question 34</h1>
+                <p class="box rounded-corners post-box">
+                    <img src="assets/2020-mc-questions/2020-q34.png" style="width:100%;">
+                </p>
+                <p class="box rounded-corners post-box">
+                    The method adds elements to returnList correctly, so that is not an issue.<br>
+                    The issue is that the method removes elements from numList and increments i anyway, so 
+                    in cases when an element is removed, the directly proceding element is skipped.<br>
+                    Thus, the issue is that the method skips some elements of numList during traversal.
+                </p>
+                <h1>Question 39</h1>
+                <p class="box rounded-corners post-box">
+                    <img src="assets/2020-mc-questions/2020-q39.png">
+                </p>
+                <p class="box rounded-corners post-box">
+                    For <code>s1.equals(s2)</code>, if s1 > s2, the value returned is positive. In order for 
+                    the method to return true, the substrings from 0 to 1 must be greater than the substrings 
+                    from 1 to 2. In other worse, the first character must be greater than the second character 
+                    for each substring. Thus, the parameter we're looking for must have characters that decrease 
+                    in lexicographical value. "edcba" is the only parameter that fits this description, so the method 
+                    call <code>recurMethod("edcba")</code> is the correct answer.
+                </p>
+            </section>
+        </div>
+    </main>
+</html>

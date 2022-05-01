@@ -28,7 +28,7 @@ function highlighter() {
     encase(["new"], "red");
     encase(regexToArray([/(?<=[. ])([a-zA-Z]+)(?=\()/]), "purple");
     encase(regexToArray([/(?<=\.)([a-zA-Z_]+)(?=;)/]), "blue");
-    encase(regexToArray([/[0-9]/]), "blue");
+    encase([1,2,3,4,5,6,7,8,9,0], "blue");
 }
 
 window.onload = function() {
