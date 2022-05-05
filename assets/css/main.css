@@ -79,7 +79,6 @@ button:hover {
 .code-highlight {
     background-color: var(--foreground);
     color: #11161A;
-    
 }
 .post {
     margin: auto;
@@ -120,6 +119,7 @@ button:hover {
     text-decoration: none;
     text-align: center;
     position: relative;
+    box-sizing: border-box;
 }
 .link:hover {
     color: var(--background);
@@ -132,7 +132,6 @@ button:hover {
     text-decoration: none;
     float: none;
     display: inline-block;
-    width: fit-content;
     color: var(--background);
     background-color: var(--foreground);
     transform: scale(0.95);
@@ -237,6 +236,9 @@ color {
 }
 .blue {
     color: #007be0;
+}
+.blue-bg {
+    background-color: #007be0 !important;
 }
 .blue-hover:hover {
     color: #00c7eb;
